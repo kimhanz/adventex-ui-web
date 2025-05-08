@@ -8,25 +8,45 @@ import { cn } from "@/lib/utils"
 function Drawer({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
+  return (
+    <DrawerPrimitive.Root
+      data-slot="drawer"
+      {...props}
+    />
+  )
 }
 
 function DrawerTrigger({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
-  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
+  return (
+    <DrawerPrimitive.Trigger
+      data-slot="drawer-trigger"
+      {...props}
+    />
+  )
 }
 
 function DrawerPortal({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
-  return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
+  return (
+    <DrawerPrimitive.Portal
+      data-slot="drawer-portal"
+      {...props}
+    />
+  )
 }
 
 function DrawerClose({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Close>) {
-  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
+  return (
+    <DrawerPrimitive.Close
+      data-slot="drawer-close"
+      {...props}
+    />
+  )
 }
 
 function DrawerOverlay({
@@ -65,7 +85,7 @@ function DrawerContent({
         )}
         {...props}
       >
-        <div className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]:drawer-content:block" />
+        <div className="bg-muted group-data-[vaul-drawer-direction=bottom]:drawer-content:block mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full" />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
