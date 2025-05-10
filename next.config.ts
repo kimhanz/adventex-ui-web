@@ -2,7 +2,8 @@ import type { NextConfig } from "next"
 import { withPayload } from "@payloadcms/next/withPayload"
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  turbopack: {},
 }
 
 export default withPayload(nextConfig)

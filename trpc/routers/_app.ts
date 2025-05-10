@@ -1,19 +1,17 @@
-import { z } from "zod"
+import { bookingRouter } from "@/modules/booking/server/procedures"
+import { contactRouter } from "@/modules/contact/server/procedures"
+import { galleriesRouter } from "@/modules/galleries/server/procedures"
+import { tourStudiesRouter } from "@/modules/tour/studies/server/procedures"
+import { toursStudiesRouter } from "@/modules/tours/studies/server/procedures"
 
-import { baseProcedure, createTRPCRouter } from "../init"
+import { createTRPCRouter } from "../init"
 
 export const appRouter = createTRPCRouter({
-  hello: baseProcedure
-    .input(
-      z.object({
-        text: z.string(),
-      })
-    )
-    .query((opts) => {
-      return {
-        greeting: `hello ${opts.input.text}`,
-      }
-    }),
+  tourStudies: tourStudiesRouter,
+  toursStudies: toursStudiesRouter,
+  booking: bookingRouter,
+  contact: contactRouter,
+  galleries: galleriesRouter,
 })
 
 // export type definition of API

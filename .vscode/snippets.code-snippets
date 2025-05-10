@@ -1,0 +1,27 @@
+{
+  "importreact": {
+    "scope": "typescriptreact",
+    "prefix": "importreact",
+    "body": ["import * as React from 'react';"],
+  },
+  "suspense": {
+    "scope": "typescriptreact",
+    "prefix": "suspense",
+    "body": ["<Suspense fallback={<${1:} }>", "${TM_SELECTED_TEXT}", "</Suspense>"],
+  },
+  "importForm": {
+    "scope": "typescriptreact",
+    "prefix": "importForm",
+    "body": ["import Form from 'next/form';"],
+  },
+  "pushRouter": {
+    "scope": "typescriptreact",
+    "prefix": "pushRouter",
+    "body": ["router.push(`?${newSearchParams.toString()}`, {", "  scroll: false,", "});"],
+  },
+  "useTransition": {
+    "scope": "typescriptreact",
+    "prefix": "transition",
+    "body": ["const [isPending, startTransition] = useTransition();"],
+  },
+}
