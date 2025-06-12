@@ -1,0 +1,111 @@
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { useQuery } from "@tanstack/react-query"
+import { Calendar, User } from "lucide-react"
+import { useTRPC } from "@/trpc/client"
+
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+
+import { useBlogFilters } from "../hooks/use-blog-filters"
+import { BlogListingSkeleton } from "./blog-listing-skeleton"
+
+function BlogListing() {
+  const [filters] = useBlogFilters()
+
+  const trpc = useTRPC()
+  const { data: postsData, isLoading } = useQuery(
+    trpc.blog.list.queryOptions({
+      page: filters.page,
+      category: filters.category || undefined,
+      tag: filters.tag || undefined,
+    })
+  )
+
+  const posts = postsData?.posts || []
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  }
+
+  if (isLoading) {
+    return <BlogListingSkeleton />
+  }
+
+  return (
+    <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {posts.length === 0 ? (
+        <div className="col-span-full py-12 text-center">
+          <p className="text-lg text-gray-500">ไม่พบบทความในหมวดหมู่นี้</p>
+        </div>
+      ) : (
+        posts.map((post) => (
+          <Card
+            key={post.id}
+            className="group border-none p-0 shadow-none transition-shadow duration-300"
+          >
+            <Link href={`/blog/${post.slug}`}>
+              {post.featuredImage && typeof post.featuredImage === "object" && (
+                <div className="relative aspect-video overflow-hidden rounded-t-lg">
+                  <Image
+                    src={post.featuredImage.url || ""}
+                    alt={post.featuredImage.alt || post.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+
+              <CardContent className="p-0 pt-2">
+                <div className="mb-3 flex items-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4" />
+                    {formatDate(post.publishedDate)}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <User className="h-4 w-4" />
+                    {typeof post.author === "object"
+                      ? post.author.email
+                      : "Admin"}
+                  </div>
+                </div>
+
+                <h3 className="group-hover:text-primary mb-3 text-xl font-semibold text-gray-900 transition-colors">
+                  {post.title}
+                </h3>
+
+                {post.excerpt && (
+                  <p className="mb-4 line-clamp-3 text-gray-600">
+                    {post.excerpt}
+                  </p>
+                )}
+
+                {post.categories && post.categories.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {post.categories.map((cat, index) => (
+                      <Badge
+                        key={index}
+                        variant="secondary"
+                        className="text-xs"
+                      >
+                        {cat.category}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Link>
+          </Card>
+        ))
+      )}
+    </div>
+  )
+}
+
+export { BlogListing }
