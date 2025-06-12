@@ -6,6 +6,7 @@ import { Icons } from "./icons"
 const footerLinks = {
   company: [
     { href: "/about", label: "เกี่ยวกับเรา" },
+    { href: "/blog", label: "บล็อก" },
     { href: "/contact", label: "ติดต่อเรา" },
   ],
   tours: [

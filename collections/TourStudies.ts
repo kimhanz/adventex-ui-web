@@ -49,7 +49,7 @@ export const TourStudies: CollectionConfig = {
     {
       name: "brochure",
       type: "upload",
-      relationTo: "media",
+      relationTo: "documents",
       admin: {
         position: "sidebar",
       },

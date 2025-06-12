@@ -115,6 +115,23 @@ export const MainNav = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link
+              href="/blog"
+              legacyBehavior
+              passHref
+            >
+              <NavigationMenuLink
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  "hover:text-primary/80 bg-transparent p-0 text-sm font-normal transition-colors hover:bg-transparent",
+                  pathname?.startsWith("/blog") ? "text-primary" : ""
+                )}
+              >
+                บล็อก
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link
               href="/about"
               legacyBehavior
               passHref
