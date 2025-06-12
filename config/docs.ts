@@ -10,6 +10,7 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     { href: "/", title: "หน้าแรก" },
     { href: "/tours/studies", title: "แพ็คเกจเรียน" },
+    { href: "/blog", title: "บล็อก" },
     { href: "/about", title: "เกี่ยวกับเรา" },
     { href: "/contact", title: "ติดต่อเรา" },
   ],
