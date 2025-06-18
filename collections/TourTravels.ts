@@ -39,7 +39,7 @@ export const TourTravels: CollectionConfig = {
     {
       name: "brochure",
       type: "upload",
-      relationTo: "media",
+      relationTo: "documents",
       admin: {
         position: "sidebar",
       },
