@@ -1,24 +1,9 @@
-import { ArrowLeft } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 
-export default function BlogPostLoading() {
+export default function Loading() {
   return (
-    <article>
-      {/* Back button skeleton */}
-      <div className="mb-6">
-        <Button
-          variant="ghost"
-          className="pl-0"
-          disabled
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          <Skeleton className="h-4 w-24" />
-        </Button>
-      </div>
-
+    <>
       {/* Article Header skeleton */}
       <header className="mb-8">
         {/* Categories skeleton */}
@@ -96,6 +81,6 @@ export default function BlogPostLoading() {
           ))}
         </div>
       </div>
-    </article>
+    </>
   )
 }

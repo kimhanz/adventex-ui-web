@@ -4,8 +4,9 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import { getQueryClient, trpc } from "@/trpc/server"
 
 import { BlogFilters } from "@/modules/blog/components/blog-filters"
-import { BlogFiltersSkeleton } from "@/modules/blog/components/blog-filters-skeleton"
 import { BlogListing } from "@/modules/blog/components/blog-listing"
+import { BlogFiltersSkeleton } from "@/modules/blog/components/ui/skeleton/blog-filters-skeleton"
+import { BlogListingSkeleton } from "@/modules/blog/components/ui/skeleton/blog-listing-skeleton"
 import { generateBlogListingSEO } from "@/modules/blog/utils/seo"
 
 export const metadata: Metadata = generateBlogListingSEO()
@@ -19,11 +20,11 @@ export default async function BlogPage() {
       {/* Hero Section */}
       <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-          Blog & Stories
+          บทความทั้งหมด
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-gray-600">
           ค้นพบเรื่องราวการเดินทาง สถานที่ท่องเที่ยวที่น่าสนใจ
-          และเทิปส์การเดินทางจากทีมงาน Adventex
+          และทิปส์การเดินทางจากทีมงาน Adventex
         </p>
       </div>
 
@@ -32,7 +33,10 @@ export default async function BlogPage() {
           <BlogFilters />
         </React.Suspense>
       </HydrationBoundary>
-      <BlogListing />
+
+      <React.Suspense fallback={<BlogListingSkeleton />}>
+        <BlogListing />
+      </React.Suspense>
     </>
   )
 }

@@ -8,13 +8,12 @@ export const blogRouter = createTRPCRouter({
   list: baseProcedure
     .input(
       z.object({
-        page: z.number().min(1).default(1),
         category: z.string().optional(),
         tag: z.string().optional(),
       })
     )
     .query(async ({ ctx, input }) => {
-      const { page, category, tag } = input
+      const { category, tag } = input
 
       const where: Where = {
         status: { equals: "published" },
@@ -32,7 +31,6 @@ export const blogRouter = createTRPCRouter({
         collection: "blog-posts",
         where,
         sort: "-publishedDate",
-        page,
         depth: 1,
       })
 

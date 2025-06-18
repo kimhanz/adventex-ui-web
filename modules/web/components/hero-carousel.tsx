@@ -20,6 +20,7 @@ export const HeroCarousel = () => {
                     width={1200}
                     height={400}
                     className="size-full object-fill"
+                    priority
                   />
                 </AspectRatio>
               </div>

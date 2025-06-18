@@ -2,7 +2,7 @@ import * as React from "react"
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import { getQueryClient, trpc } from "@/trpc/server"
 
-import { FeaturedBlogs } from "@/modules/blog/components/featured-blogs"
+import { FeaturedBlogs } from "@/modules/web/components/featured-blogs"
 import { FeaturedTour } from "@/modules/web/components/featured-tours"
 import { GalleryShowcase } from "@/modules/web/components/gallery-showcase"
 import { HeroCarousel } from "@/modules/web/components/hero-carousel"
