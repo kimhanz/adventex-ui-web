@@ -18,7 +18,7 @@ function RecommendedTours() {
         <div className="bg-muted flex h-10 w-10 items-center justify-center rounded-full">
           <Luggage className="size-6" />
         </div>
-        <h2 className="text-2xl font-bold">โปรแกรมทัวร์ใกล้เคียง</h2>
+        <h2 className="text-2xl font-bold">โปรแกรมทัวร์อื่นๆ</h2>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

@@ -19,7 +19,7 @@ export default async function BlogPage() {
     <>
       {/* Hero Section */}
       <div className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
+        <h1 className="mb-4 text-4xl font-bold md:text-4xl">
           บทความทั้งหมด
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-gray-600">
