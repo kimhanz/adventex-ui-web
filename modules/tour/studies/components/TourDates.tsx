@@ -169,8 +169,9 @@ function TourDates({
                   <Button
                     variant="outline"
                     onClick={() => handleBook(item.id)}
+                    className="bg-[#DC2626] hover:bg-red-700"
                   >
-                    จอง
+                    <p className="text-white">จอง</p>
                   </Button>
                 </TableCell>
               </TableRow>

@@ -33,7 +33,7 @@ function BlogFilters() {
           <Badge
             key={category}
             variant={filters.category === category ? "default" : "outline"}
-            className="cursor-pointer"
+            className="cursor-pointer "
             onClick={() => handleCategoryFilter(category)}
           >
             {category}

@@ -145,7 +145,7 @@ export const Testimonials = () => {
         <div className="space-y-4">
           <div className="flex flex-col items-center gap-4 text-center">
             <span className="text-primary text-xl font-semibold xl:text-4xl">
-              ทำไมต้อง Adventex Education?
+              ทำไมต้อง <span className="text-[#DC2626]">Adventex Education?</span>
             </span>
             <div className="flex flex-row items-center justify-center max-sm:flex-col">
               <h2 className="text-4xl font-bold xl:text-6xl">ลูกค้าของเรา</h2>

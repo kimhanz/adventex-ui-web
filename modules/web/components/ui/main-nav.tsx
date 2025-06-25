@@ -73,9 +73,9 @@ function MainNav() {
         className="mr-4 flex items-center justify-center gap-1 lg:mr-6"
       >
         <Icons.logo className="size-6 lg:size-10" />
-        <div className="hidden flex-col font-bold text-[#DC2626] uppercase lg:inline-flex">
+        <div className="hidden flex-col font-bold text-[#DC2626] uppercase lg:inline-flex ">
           <span className="text-2xl leading-none">Adventex</span>
-          <span className="text-[8px] leading-none">
+          <span className="text-[0.46875rem] leading-none">
             International Group Co., Ltd.
           </span>
         </div>

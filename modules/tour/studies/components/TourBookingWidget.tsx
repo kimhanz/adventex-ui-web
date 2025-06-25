@@ -51,8 +51,8 @@ function formatPrice(price: number | undefined): string {
 
 function TourBookingWidget({
   departureDates,
-  contactPhoneNumber = "02 105 6234",
-  lineId = "@mushroomtravel",
+  contactPhoneNumber = "084 105 7598",
+  lineId = "@adventexeducation",
 }: {
   departureDates?:
     | {
@@ -117,7 +117,7 @@ function TourBookingWidget({
   }
 
   return (
-    <div className="sticky top-4 rounded-lg bg-[#1877f2] p-4">
+    <div className="sticky top-4 rounded-lg bg-[#1877f2] p-3">
       <div className="bg-background space-y-4 rounded-lg p-4">
         <h3 className="text-xl font-bold">เลือกวันที่:</h3>
         {/* Date Selection Dropdown */}
@@ -143,6 +143,7 @@ function TourBookingWidget({
               <SelectItem
                 value="disabled"
                 disabled
+                
               >
                 ไม่มีวันที่ว่าง
               </SelectItem>
@@ -153,7 +154,7 @@ function TourBookingWidget({
         {/* Occupancy Selection */}
         <div>
           {/* Adults */}
-          <div className="rounded-md border p-3">
+          <div className="rounded-md border py-2 px-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">ผู้ใหญ่</span>
               <div className="flex items-center gap-2">
