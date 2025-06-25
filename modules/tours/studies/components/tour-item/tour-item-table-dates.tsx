@@ -96,7 +96,7 @@ function TourItemTableDates({
           <div
             className={cn(
               buttonVariants({ variant: "link" }),
-              "flex h-auto cursor-pointer items-center p-0 text-red-500"
+              "flex h-auto cursor-pointer items-center p-0 text-[#DC2626]"
             )}
             onClick={() => setShowAllDates((prev) => !prev)}
           >

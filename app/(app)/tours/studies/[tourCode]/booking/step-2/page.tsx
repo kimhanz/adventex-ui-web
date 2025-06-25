@@ -228,7 +228,7 @@ export default function Step2(props: {
 
   if (tourDataError) {
     return (
-      <div className="py-4 text-center text-red-500 sm:py-8">
+      <div className="py-4 text-center text-[#DC2626] sm:py-8">
         Error loading tour details: {tourDataError.message}
       </div>
     )

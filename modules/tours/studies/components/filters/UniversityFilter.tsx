@@ -1,12 +1,20 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query"
+import { useQueries } from "@tanstack/react-query"
 import { useTRPC } from "@/trpc/client"
 
 import { useTourStudiesFilters } from "@/modules/tours/studies/hooks/use-tour-studies-filters"
 
 import { FilterCheckboxItem } from "../ui/FilterCheckboxItem"
 import { FilterSection } from "../ui/FilterSection"
+
+// Array ของ university codes
+const universityCodes = ["hit", "hrbnu"] as const
+type UniversityCode = (typeof universityCodes)[number]
+const universityLabels: Record<UniversityCode, string> = {
+  hit: "HIT",
+  hrbnu: "HRBNU",
+}
 
 function UniversityFilter({
   value,
@@ -16,15 +24,13 @@ function UniversityFilter({
   onChange?: (value: string) => void
 }) {
   const trpc = useTRPC()
-  const { data: countHit } = useQuery(
-    trpc.toursStudies.countByUniversity.queryOptions({ universityCode: "hit" })
-  )
 
-  const { data: countHrbnu } = useQuery(
-    trpc.toursStudies.countByUniversity.queryOptions({
-      universityCode: "hrbnu",
-    })
-  )
+  // ใช้ useQueries สำหรับทุกมหาวิทยาลัย
+  const universityCounts = useQueries({
+    queries: universityCodes.map((universityCode) =>
+      trpc.toursStudies.countByUniversity.queryOptions({ universityCode })
+    ),
+  })
 
   // Only use URL state if not in form mode (onChange not provided)
   const [filters, setFilters] = useTourStudiesFilters()
@@ -55,20 +61,16 @@ function UniversityFilter({
 
   return (
     <FilterSection title="มหาวิทยาลัย">
-      <FilterCheckboxItem
-        id="hit"
-        label="HIT"
-        count={countHit?.count || 0}
-        checked={selectedUniversities.includes("hit")}
-        onCheckedChange={() => toggleUniversity("hit")}
-      />
-      <FilterCheckboxItem
-        id="hrbnu"
-        label="HRBNU"
-        count={countHrbnu?.count || 0}
-        checked={selectedUniversities.includes("hrbnu")}
-        onCheckedChange={() => toggleUniversity("hrbnu")}
-      />
+      {universityCodes.map((universityCode, idx) => (
+        <FilterCheckboxItem
+          key={universityCode}
+          id={universityCode}
+          label={universityLabels[universityCode]}
+          count={universityCounts[idx]?.data?.count || 0}
+          checked={selectedUniversities.includes(universityCode)}
+          onCheckedChange={() => toggleUniversity(universityCode)}
+        />
+      ))}
     </FilterSection>
   )
 }

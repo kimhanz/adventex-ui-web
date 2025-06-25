@@ -1,12 +1,22 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query"
+import { useQueries } from "@tanstack/react-query"
 import { useTRPC } from "@/trpc/client"
 
 import { useTourStudiesFilters } from "@/modules/tours/studies/hooks/use-tour-studies-filters"
 
 import { FilterCheckboxItem } from "../ui/FilterCheckboxItem"
 import { FilterSection } from "../ui/FilterSection"
+
+// Array ของ season codes
+const seasonCodes = ["spring", "summer", "autumn", "winter"] as const
+type SeasonCode = (typeof seasonCodes)[number]
+const seasonLabels: Record<SeasonCode, string> = {
+  spring: "ฤดูใบไม้ผลิ",
+  summer: "ฤดูร้อน",
+  autumn: "ฤดูใบไม้ร่วง",
+  winter: "ฤดูหนาว",
+}
 
 function SeasonFilter({
   value,
@@ -17,21 +27,12 @@ function SeasonFilter({
 }) {
   const trpc = useTRPC()
 
-  const { data: countSpring } = useQuery(
-    trpc.toursStudies.countBySeason.queryOptions({ season: "spring" })
-  )
-
-  const { data: countSummer } = useQuery(
-    trpc.toursStudies.countBySeason.queryOptions({ season: "summer" })
-  )
-
-  const { data: countAutumn } = useQuery(
-    trpc.toursStudies.countBySeason.queryOptions({ season: "autumn" })
-  )
-
-  const { data: countWinter } = useQuery(
-    trpc.toursStudies.countBySeason.queryOptions({ season: "winter" })
-  )
+  // ใช้ useQueries สำหรับทุกฤดู
+  const seasonCounts = useQueries({
+    queries: seasonCodes.map((season) =>
+      trpc.toursStudies.countBySeason.queryOptions({ season })
+    ),
+  })
 
   // Only use URL state if not in form mode (onChange not provided)
   const [filters, setFilters] = useTourStudiesFilters()
@@ -62,34 +63,16 @@ function SeasonFilter({
 
   return (
     <FilterSection title="ฤดูกาล">
-      <FilterCheckboxItem
-        id="spring"
-        label="ฤดูใบไม้ผลิ"
-        count={countSpring?.count || 0}
-        checked={selectedSeasons.includes("spring")}
-        onCheckedChange={() => toggleSeason("spring")}
-      />
-      <FilterCheckboxItem
-        id="summer"
-        label="ฤดูร้อน"
-        count={countSummer?.count || 0}
-        checked={selectedSeasons.includes("summer")}
-        onCheckedChange={() => toggleSeason("summer")}
-      />
-      <FilterCheckboxItem
-        id="autumn"
-        label="ฤดูใบไม้ร่วง"
-        count={countAutumn?.count || 0}
-        checked={selectedSeasons.includes("autumn")}
-        onCheckedChange={() => toggleSeason("autumn")}
-      />
-      <FilterCheckboxItem
-        id="winter"
-        label="ฤดูหนาว"
-        count={countWinter?.count || 0}
-        checked={selectedSeasons.includes("winter")}
-        onCheckedChange={() => toggleSeason("winter")}
-      />
+      {seasonCodes.map((season, idx) => (
+        <FilterCheckboxItem
+          key={season}
+          id={season}
+          label={seasonLabels[season]}
+          count={seasonCounts[idx]?.data?.count || 0}
+          checked={selectedSeasons.includes(season)}
+          onCheckedChange={() => toggleSeason(season)}
+        />
+      ))}
     </FilterSection>
   )
 }

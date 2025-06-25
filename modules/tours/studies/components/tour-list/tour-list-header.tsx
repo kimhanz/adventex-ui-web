@@ -12,7 +12,7 @@ function TourListHeader() {
 
   const trpc = useTRPC()
   const { data } = useSuspenseQuery(
-    trpc.toursStudies.count.queryOptions({
+    trpc.toursTravels.count.queryOptions({
       ...filters,
     })
   )
@@ -35,7 +35,7 @@ function TourListHeader() {
             size: "sm",
             variant: "link",
             className:
-              "cursor-pointer px-px! data-[active=true]:text-red-500 data-[active=true]:underline",
+              "cursor-pointer px-px! data-[active=true]:text-[#DC2626] data-[active=true]:underline",
           })}
         >
           ทัวร์แนะนำ
@@ -47,7 +47,7 @@ function TourListHeader() {
             size: "sm",
             variant: "link",
             className:
-              "cursor-pointer px-px! data-[active=true]:text-red-500 data-[active=true]:underline",
+              "cursor-pointer px-px! data-[active=true]:text-[#DC2626] data-[active=true]:underline",
           })}
         >
           ช่วงเวลา
@@ -59,7 +59,7 @@ function TourListHeader() {
             size: "sm",
             variant: "link",
             className:
-              "cursor-pointer px-px! data-[active=true]:text-red-500 data-[active=true]:underline",
+              "cursor-pointer px-px! data-[active=true]:text-[#DC2626] data-[active=true]:underline",
           })}
         >
           ราคา

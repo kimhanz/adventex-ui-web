@@ -27,12 +27,12 @@ function TourItemInfo({
       <div className="divide-border grid grid-cols-3 gap-px divide-x py-4">
         <div className="text-center">
           <div className="text-muted-foreground text-xs">รหัสทัวร์</div>
-          <div className="font-medium text-red-500">{code}</div>
+          <div className="font-medium text-[#DC2626]">{code}</div>
         </div>
 
         <div className="text-center">
           <div className="text-muted-foreground text-xs">มหาลัย</div>
-          <div className="font-medium text-red-500 uppercase">
+          <div className="font-medium text-[#DC2626] uppercase">
             {university?.code}
           </div>
         </div>
