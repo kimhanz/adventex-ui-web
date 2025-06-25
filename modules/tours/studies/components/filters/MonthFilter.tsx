@@ -1,6 +1,6 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query"
+import { useQueries } from "@tanstack/react-query"
 import { useTRPC } from "@/trpc/client"
 
 import { useTourStudiesFilters } from "@/modules/tours/studies/hooks/use-tour-studies-filters"
@@ -23,6 +23,36 @@ type MonthCode =
   | "nov"
   | "dec"
 
+// Array ของ month codes
+const monthCodes: MonthCode[] = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+]
+const monthLabels: Record<MonthCode, string> = {
+  jan: "มกราคม",
+  feb: "กุมภาพันธ์",
+  mar: "มีนาคม",
+  apr: "เมษายน",
+  may: "พฤษภาคม",
+  jun: "มิถุนายน",
+  jul: "กรกฎาคม",
+  aug: "สิงหาคม",
+  sep: "กันยายน",
+  oct: "ตุลาคม",
+  nov: "พฤศจิกายน",
+  dec: "ธันวาคม",
+}
+
 function MonthFilter({
   value,
   onChange,
@@ -31,53 +61,13 @@ function MonthFilter({
   onChange?: (value: string) => void
 }) {
   const trpc = useTRPC()
-  const { data: countJan } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "jan" })
-  )
 
-  const { data: countFeb } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "feb" })
-  )
-
-  const { data: countMar } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "mar" })
-  )
-
-  const { data: countApr } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "apr" })
-  )
-
-  const { data: countMay } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "may" })
-  )
-
-  const { data: countJun } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "jun" })
-  )
-
-  const { data: countJul } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "jul" })
-  )
-
-  const { data: countAug } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "aug" })
-  )
-
-  const { data: countSep } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "sep" })
-  )
-
-  const { data: countOct } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "oct" })
-  )
-
-  const { data: countNov } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "nov" })
-  )
-
-  const { data: countDec } = useQuery(
-    trpc.toursStudies.countByMonth.queryOptions({ monthCode: "dec" })
-  )
+  // ใช้ useQueries สำหรับทุกเดือน
+  const monthCounts = useQueries({
+    queries: monthCodes.map((monthCode) =>
+      trpc.toursStudies.countByMonth.queryOptions({ monthCode })
+    ),
+  })
 
   // Only use URL state if not in form mode (onChange not provided)
   const [filters, setFilters] = useTourStudiesFilters()
@@ -109,101 +99,16 @@ function MonthFilter({
   return (
     <FilterSection title="เดือน">
       <div className="grid gap-2">
-        <FilterCheckboxItem
-          id="jan"
-          label="มกราคม"
-          count={countJan?.count || 0}
-          checked={selectedMonths.includes("jan")}
-          onCheckedChange={() => toggleMonth("jan")}
-        />
-
-        <FilterCheckboxItem
-          id="feb"
-          label="กุมภาพันธ์"
-          count={countFeb?.count || 0}
-          checked={selectedMonths.includes("feb")}
-          onCheckedChange={() => toggleMonth("feb")}
-        />
-
-        <FilterCheckboxItem
-          id="mar"
-          label="มีนาคม"
-          count={countMar?.count || 0}
-          checked={selectedMonths.includes("mar")}
-          onCheckedChange={() => toggleMonth("mar")}
-        />
-
-        <FilterCheckboxItem
-          id="apr"
-          label="เมษายน"
-          count={countApr?.count || 0}
-          checked={selectedMonths.includes("apr")}
-          onCheckedChange={() => toggleMonth("apr")}
-        />
-
-        <FilterCheckboxItem
-          id="may"
-          label="พฤษภาคม"
-          count={countMay?.count || 0}
-          checked={selectedMonths.includes("may")}
-          onCheckedChange={() => toggleMonth("may")}
-        />
-
-        <FilterCheckboxItem
-          id="jun"
-          label="มิถุนายน"
-          count={countJun?.count || 0}
-          checked={selectedMonths.includes("jun")}
-          onCheckedChange={() => toggleMonth("jun")}
-        />
-
-        <FilterCheckboxItem
-          id="jul"
-          label="กรกฎาคม"
-          count={countJul?.count || 0}
-          checked={selectedMonths.includes("jul")}
-          onCheckedChange={() => toggleMonth("jul")}
-        />
-
-        <FilterCheckboxItem
-          id="aug"
-          label="สิงหาคม"
-          count={countAug?.count || 0}
-          checked={selectedMonths.includes("aug")}
-          onCheckedChange={() => toggleMonth("aug")}
-        />
-
-        <FilterCheckboxItem
-          id="sep"
-          label="กันยายน"
-          count={countSep?.count || 0}
-          checked={selectedMonths.includes("sep")}
-          onCheckedChange={() => toggleMonth("sep")}
-        />
-
-        <FilterCheckboxItem
-          id="oct"
-          label="ตุลาคม"
-          count={countOct?.count || 0}
-          checked={selectedMonths.includes("oct")}
-          onCheckedChange={() => toggleMonth("oct")}
-        />
-
-        <FilterCheckboxItem
-          id="nov"
-          label="พฤศจิกายน"
-          count={countNov?.count || 0}
-          checked={selectedMonths.includes("nov")}
-          onCheckedChange={() => toggleMonth("nov")}
-        />
-
-        <FilterCheckboxItem
-          id="dec"
-          label="ธันวาคม"
-          count={countDec?.count || 0}
-          checked={selectedMonths.includes("dec")}
-          onCheckedChange={() => toggleMonth("dec")}
-        />
+        {monthCodes.map((monthCode, idx) => (
+          <FilterCheckboxItem
+            key={monthCode}
+            id={monthCode}
+            label={monthLabels[monthCode]}
+            count={monthCounts[idx]?.data?.count || 0}
+            checked={selectedMonths.includes(monthCode)}
+            onCheckedChange={() => toggleMonth(monthCode)}
+          />
+        ))}
       </div>
     </FilterSection>
   )

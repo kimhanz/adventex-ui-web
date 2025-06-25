@@ -1,12 +1,20 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query"
+import { useQueries } from "@tanstack/react-query"
 import { useTRPC } from "@/trpc/client"
 
 import { useTourStudiesFilters } from "@/modules/tours/studies/hooks/use-tour-studies-filters"
 
 import { FilterCheckboxItem } from "../ui/FilterCheckboxItem"
 import { FilterSection } from "../ui/FilterSection"
+
+// Array ของ type codes
+const typeCodes = ["short", "long"] as const
+type TypeCode = (typeof typeCodes)[number]
+const typeLabels: Record<TypeCode, string> = {
+  short: "ทัวร์ระยะสั้น",
+  long: "ทัวร์ระยะยาว",
+}
 
 function TypeFilter({
   value,
@@ -16,13 +24,13 @@ function TypeFilter({
   onChange?: (value: string) => void
 }) {
   const trpc = useTRPC()
-  const { data: countShort } = useQuery(
-    trpc.toursStudies.countByType.queryOptions({ type: "short" })
-  )
 
-  const { data: countLong } = useQuery(
-    trpc.toursStudies.countByType.queryOptions({ type: "long" })
-  )
+  // ใช้ useQueries สำหรับทุกประเภท
+  const typeCounts = useQueries({
+    queries: typeCodes.map((type) =>
+      trpc.toursStudies.countByType.queryOptions({ type })
+    ),
+  })
 
   // Only use URL state if not in form mode (onChange not provided)
   const [filters, setFilters] = useTourStudiesFilters()
@@ -53,20 +61,16 @@ function TypeFilter({
 
   return (
     <FilterSection title="ประเภททัวร์">
-      <FilterCheckboxItem
-        id="short"
-        label="ทัวร์ระยะสั้น"
-        count={countShort?.count || 0}
-        checked={selectedTypes.includes("short")}
-        onCheckedChange={() => toggleType("short")}
-      />
-      <FilterCheckboxItem
-        id="long"
-        label="ทัวร์ระยะยาว"
-        count={countLong?.count || 0}
-        checked={selectedTypes.includes("long")}
-        onCheckedChange={() => toggleType("long")}
-      />
+      {typeCodes.map((type, idx) => (
+        <FilterCheckboxItem
+          key={type}
+          id={type}
+          label={typeLabels[type]}
+          count={typeCounts[idx]?.data?.count || 0}
+          checked={selectedTypes.includes(type)}
+          onCheckedChange={() => toggleType(type)}
+        />
+      ))}
     </FilterSection>
   )
 }

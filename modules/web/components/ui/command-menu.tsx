@@ -3,8 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { Circle, File, Laptop, Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Circle, File } from "lucide-react"
 
 import { docsConfig } from "@/config/docs"
 import { cn } from "@/lib/utils"
@@ -17,21 +16,19 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from "@/components/ui/command"
 
-interface CommandMenuProps {
+function CommandMenu({
+  ...props
+}: {
   children?: React.ReactNode
   open?: boolean
   defaultOpen?: boolean
   onOpenChange?(open: boolean): void
   modal?: boolean
-}
-
-export const CommandMenu = ({ ...props }: CommandMenuProps) => {
+}) {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
-  const { setTheme } = useTheme()
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -210,42 +207,10 @@ export const CommandMenu = ({ ...props }: CommandMenuProps) => {
               </CommandGroup>
             )
           })}
-
-          <CommandSeparator />
-          <CommandGroup heading="Theme">
-            <CommandItem
-              onSelect={() => {
-                return runCommand(() => {
-                  return setTheme("light")
-                })
-              }}
-            >
-              <Sun />
-              Light
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                return runCommand(() => {
-                  return setTheme("dark")
-                })
-              }}
-            >
-              <Moon />
-              Dark
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                return runCommand(() => {
-                  return setTheme("system")
-                })
-              }}
-            >
-              <Laptop />
-              System
-            </CommandItem>
-          </CommandGroup>
         </CommandList>
       </CommandDialog>
     </React.Fragment>
   )
 }
+
+export { CommandMenu }

@@ -200,7 +200,7 @@ function TourBookingWidget({
             </div>
             <div>
               <div className="text-muted-foreground">โทรจองทัวร์นี้</div>
-              <div className="text-xl font-bold text-red-500">
+              <div className="text-xl font-bold text-[#DC2626]">
                 {contactPhoneNumber}
               </div>
             </div>

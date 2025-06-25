@@ -47,7 +47,7 @@ function BlogListing() {
       {data.posts.map((post) => (
         <Card
           key={post.id}
-          className="group isolate border-none p-0 shadow-none transition-shadow duration-300"
+          className="group relative isolate border-none p-0 shadow-none transition-shadow duration-300"
         >
           <Link
             title={post.title}

@@ -17,38 +17,53 @@ import {
 
 import { Icons } from "./icons"
 
-type ListItemRef = React.ComponentRef<"a">
+const components: { title: string; href: string; description: string }[] = [
+  {
+    title: "Harbin",
+    href: "/tours/travels?destination=Harbin",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Beijing",
+    href: "/tours/travels?destination=Beijing",
+    description:
+      "For sighted users to preview content available behind a link.",
+  },
+  {
+    title: "Chengdu",
+    href: "/tours/travels?destination=Chengdu",
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+  },
+  {
+    title: "Shanghai",
+    href: "/tours/travels?destination=Shanghai",
+    description: "Visually or semantically separates content.",
+  },
+]
 
-interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
-  title: string
+function ListItem({
+  title,
+  children,
+  href,
+  ...props
+}: React.ComponentProps<"li"> & { href: string }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <Link href={href}>
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  )
 }
 
-const ListItem = React.forwardRef<ListItemRef, ListItemProps>(
-  ({ title, className, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              "hover:bg-accent hover:text-primary focus:bg-accent focus:text-primary block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
-              className
-            )}
-            {...props}
-          >
-            <div className="text-sm leading-none font-medium">{title}</div>
-            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-              {children}
-            </p>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    )
-  }
-)
-ListItem.displayName = "ListItem"
-
-export const MainNav = () => {
+function MainNav() {
   const pathname = usePathname()
 
   return (
@@ -65,26 +80,27 @@ export const MainNav = () => {
           </span>
         </div>
       </Link>
-      <NavigationMenu>
-        <NavigationMenuList className="space-x-4 xl:space-x-6">
+
+      <NavigationMenu viewport={false}>
+        <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger
               className={cn(
-                "hover:text-primary/80 data-[state=open]:text-primary bg-transparent p-0 text-sm font-normal transition-colors hover:bg-transparent data-[state=open]:bg-transparent",
-                pathname === "/tours/studies" ? "text-primary" : ""
+                "bg-transparent hover:bg-transparent hover:text-[#DC2626]/80 data-[state=open]:bg-transparent data-[state=open]:text-[#DC2626]",
+                pathname === "/tours/studies" ? "text-[#DC2626]" : ""
               )}
             >
-              <Link href="/tours/studies">แพ็คเกจเรียน</Link>
+              แพ็คเกจเรียน
             </NavigationMenuTrigger>
+
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
-                  <Link
-                    href="/tours/studies"
-                    legacyBehavior
-                    passHref
-                  >
-                    <NavigationMenuLink className="from-muted/50 to-muted flex size-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md">
+                  <NavigationMenuLink asChild>
+                    <Link
+                      className="from-muted/50 to-muted flex size-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md"
+                      href="/tours/studies"
+                    >
                       <div className="mt-4 mb-2 text-lg font-medium">
                         แพ็คเกจทั้งหมด
                       </div>
@@ -93,8 +109,8 @@ export const MainNav = () => {
                         พร้อมแพ็คเกจที่ครอบคลุมทั้งที่พัก การเดินทาง
                         และกิจกรรมต่างๆ
                       </p>
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </li>
                 <ListItem
                   title="แพ็คเกจเรียนระยะสั้น"
@@ -113,59 +129,73 @@ export const MainNav = () => {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuItem>
-            <Link
-              href="/blog"
-              legacyBehavior
-              passHref
+            <NavigationMenuTrigger
+              className={cn(
+                "bg-transparent hover:bg-transparent hover:text-[#DC2626]/80 data-[state=open]:bg-transparent data-[state=open]:text-[#DC2626]",
+                pathname === "/tours/travels" ? "text-[#DC2626]" : ""
+              )}
             >
-              <NavigationMenuLink
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  "hover:text-primary/80 bg-transparent p-0 text-sm font-normal transition-colors hover:bg-transparent",
-                  pathname?.startsWith("/blog") ? "text-primary" : ""
-                )}
-              >
-                บล็อก
-              </NavigationMenuLink>
-            </Link>
+              แพ็คเกจท่องเที่ยว
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                {components.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                  >
+                    {component.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuItem>
-            <Link
-              href="/about"
-              legacyBehavior
-              passHref
+            <NavigationMenuLink
+              asChild
+              className={cn(
+                navigationMenuTriggerStyle(),
+                "bg-transparent hover:bg-transparent hover:text-[#DC2626]/80 data-[state=open]:bg-transparent data-[state=open]:text-[#DC2626]",
+                pathname === "/blog" ? "text-[#DC2626]" : ""
+              )}
             >
-              <NavigationMenuLink
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  "hover:text-primary/80 bg-transparent p-0 text-sm font-normal transition-colors hover:bg-transparent",
-                  pathname?.startsWith("/about") ? "text-primary" : ""
-                )}
-              >
-                เกี่ยวกับเรา
-              </NavigationMenuLink>
-            </Link>
+              <Link href="/blog">บทความ</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
+
           <NavigationMenuItem>
-            <Link
-              href="/contact"
-              legacyBehavior
-              passHref
+            <NavigationMenuLink
+              asChild
+              className={cn(
+                navigationMenuTriggerStyle(),
+                "bg-transparent hover:bg-transparent hover:text-[#DC2626]/80 data-[state=open]:bg-transparent data-[state=open]:text-[#DC2626]",
+                pathname === "/about" ? "text-[#DC2626]" : ""
+              )}
             >
-              <NavigationMenuLink
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  "hover:text-primary/80 bg-transparent p-0 text-sm font-normal transition-colors hover:bg-transparent",
-                  pathname?.startsWith("/contact") ? "text-primary" : ""
-                )}
-              >
-                ติดต่อเรา
-              </NavigationMenuLink>
-            </Link>
+              <Link href="/about">เกี่ยวกับเรา</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(
+                navigationMenuTriggerStyle(),
+                "bg-transparent hover:bg-transparent hover:text-[#DC2626]/80 data-[state=open]:bg-transparent data-[state=open]:text-[#DC2626]",
+                pathname === "/contact" ? "text-[#DC2626]" : ""
+              )}
+            >
+              <Link href="/contact">ติดต่อเรา</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </div>
   )
 }
+
+export { MainNav }

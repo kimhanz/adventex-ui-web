@@ -25,8 +25,20 @@ export const TourTravels: CollectionConfig = {
       type: "text",
     },
     {
+      name: "durationFiltered",
+      type: "number",
+    },
+    {
       name: "destination",
       type: "text",
+    },
+    {
+      name: "isPublished",
+      type: "checkbox",
+      defaultValue: false,
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "image",
@@ -49,15 +61,18 @@ export const TourTravels: CollectionConfig = {
       type: "array",
       admin: {
         position: "sidebar",
+        initCollapsed: true,
       },
       fields: [
         {
           name: "startDate",
           type: "date",
+          required: true,
         },
         {
           name: "endDate",
           type: "date",
+          required: true,
         },
         {
           name: "priceOptions",
@@ -66,10 +81,12 @@ export const TourTravels: CollectionConfig = {
             {
               name: "type",
               type: "text",
+              required: true,
             },
             {
               name: "price",
               type: "number",
+              required: true,
             },
           ],
         },
@@ -80,11 +97,13 @@ export const TourTravels: CollectionConfig = {
       type: "array",
       admin: {
         position: "sidebar",
+        initCollapsed: true,
       },
       fields: [
         {
           name: "highlight",
           type: "text",
+          required: true,
         },
       ],
     },

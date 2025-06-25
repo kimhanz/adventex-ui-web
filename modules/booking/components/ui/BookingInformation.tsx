@@ -39,7 +39,7 @@ function BookingInformation({
       </div>
       <div className="mt-3 flex w-full items-center justify-between text-right sm:mt-0 sm:block sm:w-auto">
         <div className="text-xs text-neutral-600 sm:text-sm">รหัสทัวร์</div>
-        <div className="text-lg font-bold text-red-500 sm:text-xl md:text-2xl">
+        <div className="text-lg font-bold text-[#DC2626] sm:text-xl md:text-2xl">
           {code}
         </div>
       </div>
