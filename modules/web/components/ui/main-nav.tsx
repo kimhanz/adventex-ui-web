@@ -114,14 +114,14 @@ function MainNav() {
                 </li>
                 <ListItem
                   title="แพ็คเกจเรียนระยะสั้น"
-                  href="/tours/studies?duration=short"
+                  href="/tours/studies?type=short"
                 >
                   เรียนรู้ภาษาและวัฒนธรรมจีนผ่านหลักสูตรระยะสั้น 1-6 เดือน
                   พร้อมที่พักและกิจกรรมครบครัน
                 </ListItem>
                 <ListItem
                   title="แพ็คเกจเรียนระยะยาว"
-                  href="/tours/studies?duration=long"
+                  href="/tours/studies?type=long"
                 >
                   หลักสูตรการศึกษาระยะยาว 1-4 ปี
                   พร้อมโอกาสฝึกงานและเรียนรู้วิถีชีวิตในประเทศจีน

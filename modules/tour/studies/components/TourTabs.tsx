@@ -8,11 +8,8 @@ import { TourTerms } from "./TourTerms"
 
 function TourTabs({ brochure }: { brochure: Media }) {
   return (
-    <Tabs
-      defaultValue="programs"
-      className="flex-cols flex items-center justify-center"
-    >
-      <TabsList className="inline-flex items-center gap-x-px bg-transparent px-0 py-0 before:bg-[#1877f2]">
+    <Tabs defaultValue="programs">
+      <TabsList className="gap-x-px self-center bg-transparent px-0 py-0 before:bg-[#1877f2]">
         <TabsTrigger
           value="programs"
           className="text-background cursor-pointer rounded-none rounded-tl-md bg-[#1877f2] px-6 py-2.5 text-lg data-[state=active]:h-[calc(100%+1px)] data-[state=active]:bg-red-500"

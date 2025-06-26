@@ -16,17 +16,15 @@ function TourDetails({
 
   return (
     <div className="space-y-6 py-4">
-      <div className="text-3xl font-bold">ไฮไลก์โปรแกรมทัวร์</div>
+      <div className="text-3xl font-bold">ไฮไลท์โปรแกรมทัวร์</div>
 
-      <div className="flex items-start gap-2">
+      <div className="flex flex-col items-start gap-2">
         <div>
           <span className="font-bold">ไฮไลท์:</span>
           <span> </span>
           <span className="text-sm">{content}</span>
         </div>
-      </div>
 
-      <div className="flex items-center justify-center">
         <Button className="text-background self-center bg-linear-to-b from-red-500 to-red-700 bg-[length:100%_100%] bg-[bottom] inset-shadow-[0_1px_rgb(255_255_255/0.15)] transition-all hover:bg-[length:100%_150%]">
           <svg
             xmlns="http://www.w3.org/2000/svg"

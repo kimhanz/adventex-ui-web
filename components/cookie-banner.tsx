@@ -44,7 +44,12 @@ export function CookieBanner() {
             </Link>
           </p>
           <div className="flex justify-end gap-2">
-            <Button onClick={handleAcceptCookies}>ยอมรับ</Button>
+            <Button
+              onClick={handleAcceptCookies}
+              className="bg-[#DC2626] hover:bg-[#DC2626]/70 focus:bg-[#DC2626]/95"
+            >
+              ยอมรับ
+            </Button>
           </div>
         </div>
       </div>

@@ -15,10 +15,12 @@ export const SiteHeader = () => {
         <div className="container flex h-14 items-center">
           <MainNav />
           <MobileNav />
+
           <div className="flex flex-1 items-center justify-between gap-2 md:justify-end">
             <div className="w-full flex-1 md:w-auto md:flex-none">
               <CommandMenu />
             </div>
+
             <nav className="flex items-center gap-0.5">
               <Button
                 variant="outline"
