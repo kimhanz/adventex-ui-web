@@ -23,7 +23,6 @@ function BookingInformation({
           />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="mb-1 flex items-center sm:mb-2"></div>
           <h1 className="line-clamp-2 text-base font-bold sm:line-clamp-none sm:text-lg md:text-xl">
             {name}
           </h1>

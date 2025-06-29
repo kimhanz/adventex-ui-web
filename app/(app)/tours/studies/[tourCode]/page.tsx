@@ -45,7 +45,7 @@ export default async function TourCode(props: {
   )
 
   return (
-    <div className="space-y-6">
+    <div className="relative isolate space-y-6">
       <TourBreadcrumb name={tour.name} />
 
       <TourHeader
@@ -71,7 +71,7 @@ export default async function TourCode(props: {
           <TourTabs brochure={tour.brochure} />
         </div>
 
-        <div className="hidden lg:col-span-1 lg:block">
+        <div className="relative isolate hidden lg:col-span-1 lg:block">
           <TourBookingWidget departureDates={tour.departureDates} />
         </div>
       </div>

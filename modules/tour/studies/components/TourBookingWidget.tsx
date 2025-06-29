@@ -117,9 +117,10 @@ function TourBookingWidget({
   }
 
   return (
-    <div className="sticky top-4 rounded-lg bg-[#1877f2] p-3">
-      <div className="bg-background space-y-4 rounded-lg p-4">
+    <div className="sticky top-4 rounded-(--card-radius) bg-[#1877f2] p-(--card-padding) outline -outline-offset-1 outline-white/25 [--card-padding:--spacing(3)] [--card-radius:var(--radius-2xl)]">
+      <div className="bg-background space-y-4 rounded-[calc(var(--card-radius)-var(--card-padding))] p-(--card-padding)">
         <h3 className="text-xl font-bold">เลือกวันที่:</h3>
+
         {/* Date Selection Dropdown */}
         <Select
           value={selectedDateIndex.toString()}

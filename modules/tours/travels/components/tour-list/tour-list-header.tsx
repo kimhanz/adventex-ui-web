@@ -12,7 +12,7 @@ function TourListHeader() {
 
   const trpc = useTRPC()
   const { data } = useSuspenseQuery(
-    trpc.toursStudies.count.queryOptions({
+    trpc.toursTravels.count.queryOptions({
       ...filters,
     })
   )
