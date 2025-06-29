@@ -328,7 +328,7 @@ export default function Step1(props: {
           <div className="mt-4 flex flex-col items-end justify-between text-xs text-neutral-600 sm:mt-6 sm:flex-row sm:text-sm">
             <p>
               สอบถามเกี่ยวกับการจองทัวร์ โทร.{" "}
-              <span className="text-[#1877f2]">02 105 6234</span> ต่อ 1
+              <span className="text-[#1877f2]">0841057598</span>
             </p>
 
             <Button
