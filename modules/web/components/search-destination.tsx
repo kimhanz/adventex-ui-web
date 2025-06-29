@@ -36,7 +36,7 @@ import { getMonthName } from "../lib/utils"
 function formatThaiDate(date: Date) {
   return new Intl.DateTimeFormat("th-TH", {
     day: "2-digit",
-    month: "long"
+    month: "long",
   }).format(date)
 }
 
@@ -178,7 +178,10 @@ export const SearchDestination = () => {
     const newSearchParams = new URLSearchParams()
 
     if (date !== undefined)
-      newSearchParams.set("month", getMonthName(date?.from?.getMonth()))
+      newSearchParams.set(
+        "month",
+        getMonthName((date?.from?.getMonth() || 0) + 1)
+      )
     if (university !== undefined)
       newSearchParams.set("university", String(university))
 
