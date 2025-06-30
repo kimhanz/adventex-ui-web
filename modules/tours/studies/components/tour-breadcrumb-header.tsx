@@ -25,7 +25,7 @@ function TourBreadcrumbHeader() {
         </BreadcrumbSeparator>
 
         <BreadcrumbItem>
-          <BreadcrumbPage>ทัวร์ท่องเที่ยว</BreadcrumbPage>
+          <BreadcrumbPage>ทัวร์เรียน</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

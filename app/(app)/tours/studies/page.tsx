@@ -27,12 +27,12 @@ export default async function TourPage({
 
   return (
     <>
-      <header className="hidden w-full space-y-4 md:block">
+      <header className="hidden w-full space-y-4 px-4 py-4 md:block">
         <TourBreadcrumbHeader />
         {/* <TourInformationHeader /> */}
       </header>
 
-      <div className="relative flex flex-col gap-6 md:flex-row">
+      <div className="relative isolate flex flex-col gap-6 md:flex-row">
         <FilterPanel />
 
         <HydrationBoundary state={dehydrate(queryClient)}>
