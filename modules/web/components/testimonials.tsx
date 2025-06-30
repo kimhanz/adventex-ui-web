@@ -5,7 +5,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Card } from "@/components/ui/card"
 import { Marquee } from "@/components/magicui/marquee"
 
-const testimonails = [
+const testimonials = [
   {
     author: {
       avatar: "https://avatar.vercel.sh/sarahc",
@@ -96,10 +96,10 @@ const testimonails = [
   },
 ]
 
-const firstRow = testimonails.slice(0, 5)
-const secondRow = testimonails.slice(5)
+const firstRow = testimonials.slice(0, 5)
+const secondRow = testimonials.slice(5)
 
-interface TestimonailCardProps {
+interface TestimonialCardProps {
   author: {
     name: string
     handle: string
@@ -108,7 +108,7 @@ interface TestimonailCardProps {
   text: string
 }
 
-const TestimonialCard: React.FC<TestimonailCardProps> = ({ author, text }) => {
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ author, text }) => {
   return (
     <Card
       className={cn(
@@ -159,12 +159,12 @@ export const Testimonials = () => {
           </div>
           <div className="relative flex size-full flex-col items-center justify-center overflow-hidden">
             <Marquee pauseOnHover>
-              {firstRow.map((testimonail) => {
+              {firstRow.map((testimonial) => {
                 return (
                   <TestimonialCard
-                    key={testimonail.author.name}
-                    author={testimonail.author}
-                    text={testimonail.text}
+                    key={testimonial.author.name}
+                    author={testimonial.author}
+                    text={testimonial.text}
                   />
                 )
               })}
@@ -173,12 +173,12 @@ export const Testimonials = () => {
               reverse
               pauseOnHover
             >
-              {secondRow.map((testimonail) => {
+              {secondRow.map((testimonial) => {
                 return (
                   <TestimonialCard
-                    key={testimonail.author.name}
-                    author={testimonail.author}
-                    text={testimonail.text}
+                    key={testimonial.author.name}
+                    author={testimonial.author}
+                    text={testimonial.text}
                   />
                 )
               })}
