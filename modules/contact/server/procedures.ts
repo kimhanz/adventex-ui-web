@@ -45,13 +45,13 @@ export const contactRouter = createTRPCRouter({
           throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
             message:
-              error.message || "Failed to send booking confirmation email.",
+              error.message || "Failed to send contact request email.",
             cause: error,
           })
         }
 
         console.log(
-          `Booking confirmation email sent to support@adventex.co.th, ID: ${data?.id}`
+          `Contact request email sent to support@adventex.co.th, ID: ${data?.id}`
         )
 
         await resend.emails.send({
@@ -63,7 +63,7 @@ export const contactRouter = createTRPCRouter({
 
         return {
           success: true,
-          message: "Booking confirmation email sent successfully.",
+          message: "Contact request email sent successfully.",
           emailId: data?.id,
         }
       } catch (err) {
