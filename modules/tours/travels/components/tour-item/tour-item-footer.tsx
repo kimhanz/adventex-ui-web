@@ -28,7 +28,7 @@ function TourItemFooter({
         >
           <Link
             title={name}
-            href={`/tours/studies/${code}`}
+            href={`/tours/travels/${code}`}
           >
             <span>ดูรายละเอียด</span>
             <ArrowRight className="transform transition-transform duration-150 group-hover:translate-x-1" />
