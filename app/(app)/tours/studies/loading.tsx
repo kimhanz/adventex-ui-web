@@ -6,12 +6,12 @@ import { TourInformationHeader } from "@/modules/tours/studies/components/tour-i
 export default function Loading() {
   return (
     <>
-      <header className="hidden w-full space-y-4 md:block">
+      <header className="hidden w-full space-y-4 px-4 py-4 md:block lg:px-6 lg:py-6">
         <TourBreadcrumbHeader />
         <TourInformationHeader />
       </header>
 
-      <div className="relative flex flex-col gap-6 md:flex-row">
+      <div className="relative flex flex-col gap-6 px-4 py-4 md:flex-row lg:px-6 lg:py-6">
         <FilterPanelSkeleton />
         <TourSectionSkeleton />
       </div>
