@@ -3,6 +3,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import type { SearchParams } from "nuqs/server"
 import { getQueryClient, trpc } from "@/trpc/server"
 
+import { TourSectionSkeleton } from "@/modules/tours/studies/components/skeletons/TourSectionSkeleton"
 import { TourBreadcrumbHeader } from "@/modules/tours/studies/components/tour-breadcrumb-header"
 import { FilterPanel } from "@/modules/tours/travels/components/filters/FilterPanel"
 import { TourList } from "@/modules/tours/travels/components/tour-list"
@@ -25,17 +26,17 @@ export default async function Page({
 
   return (
     <>
-      <header className="hidden w-full space-y-4 md:block">
+      <header className="hidden w-full space-y-4 px-4 py-4 md:block">
         <TourBreadcrumbHeader />
         {/* <TourInformationHeader /> */}
       </header>
 
-      <div className="relative flex flex-col gap-6 md:flex-row">
+      <div className="relative isolate flex flex-col gap-6 md:flex-row">
         <FilterPanel />
 
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <React.Suspense>
-            <div className="min-h-svh w-full space-y-4 md:w-3/4">
+          <React.Suspense fallback={<TourSectionSkeleton />}>
+            <div className="w-full space-y-4 md:w-3/4">
               <TourListHeader />
               <TourList />
             </div>

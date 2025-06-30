@@ -94,8 +94,8 @@ function FilterPanel() {
 
   if (isMobile)
     return (
-      <div className="relative p-4">
-        <div className="bg-muted fixed inset-x-0 top-0 z-50 flex h-12 w-full items-center justify-between px-4 shadow-sm">
+      <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-14 z-10 border-b px-4 shadow-sm backdrop-blur">
+        <div className="flex h-12 w-full items-center justify-between">
           <Select
             defaultValue={filters.sort}
             onValueChange={(value) =>

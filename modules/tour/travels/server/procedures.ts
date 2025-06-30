@@ -38,8 +38,8 @@ export const tourTravelRouter = createTRPCRouter({
 
   listReccommended: baseProcedure.query(async ({ ctx }) => {
     const payloadData = await ctx.db.find({
-      collection: "tour-studies",
-      where: { isFeatured: { equals: true } },
+      collection: "tour-travel",
+      where: { isPublished: { equals: true } },
       limit: 3,
       pagination: false,
       depth: 1,

@@ -16,19 +16,44 @@ export const docsConfig: DocsConfig = {
   ],
   tourNav: [
     {
+      title: "แพ็คเกจเรียน",
       items: [
         {
-          href: "/tours/studies?duration=short",
+          href: "/tours/studies?type=short",
           items: [],
           title: "แพ็คเกจเรียนระยะสั้น",
         },
         {
-          href: "/tours/studies?duration=long",
+          href: "/tours/studies?type=long",
           items: [],
           title: "แพ็คเกจเรียนระยะยาว",
         },
       ],
-      title: "แพ็คเกจเรียน",
+    },
+    {
+      title: "แพ็คเกจท่องเที่ยว",
+      items: [
+        {
+          href: "/tours/travels?destination=Harbin",
+          items: [],
+          title: "Harbin",
+        },
+        {
+          href: "/tours/travels?destination=Beijing",
+          items: [],
+          title: "Beijing",
+        },
+        {
+          href: "/tours/travels?destination=Chengdu",
+          items: [],
+          title: "Chengdu",
+        },
+        {
+          href: "/tours/travels?destination=Shanghai",
+          items: [],
+          title: "Shanghai",
+        },
+      ],
     },
   ],
   tourStudy: [

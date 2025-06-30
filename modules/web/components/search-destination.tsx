@@ -109,7 +109,7 @@ function DateRangeDestination({
                 onSelect(date)
                 setOpen(false)
               }}
-              className="mx-auto [--cell-size:clamp(0px,calc(100vw/7.5),52px)]"
+              className="mx-auto [--cell-size:clamp(0px,calc(100vw/7.5),40px)]"
             />
           </DrawerContent>
         </Drawer>
