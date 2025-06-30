@@ -1,7 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
 
-
 import { Button } from "@/components/ui/button"
 
 import { TourStudiesRecommended } from "../../types"
@@ -51,15 +50,17 @@ function TourCardDetailsGrid({
     <div className="divide-border grid grid-cols-3 divide-x">
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">จำนวนวัน</div>
-        <div className="text-xs font-bold">{duration}</div>
+        <div className="text-xs font-bold text-[#DC2626]">{duration}</div>
       </div>
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">มหาลัย</div>
-        <div className="text-xs uppercase">{university.code}</div>
+        <div className="text-xs font-bold text-[#DC2626] uppercase">
+          {university.code}
+        </div>
       </div>
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">รหัสทัวร์</div>
-        <div className="text-xs">{code}</div>
+        <div className="text-xs font-bold text-[#DC2626]">{code}</div>
       </div>
     </div>
   )
@@ -199,7 +200,6 @@ function TourCardFooter({
           href={`/tours/studies/${code}`}
         >
           <span>ดูรายละเอียด</span>
-          
         </Link>
       </Button>
     </div>

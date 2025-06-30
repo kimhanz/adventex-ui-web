@@ -114,7 +114,7 @@ function PriceSummary({ isLoading = false }: PriceSummaryProps) {
   }
 
   return (
-    <div className="w-full overflow-hidden rounded-md border border-neutral-100 shadow-sm">
+    <div className="h-full w-full overflow-hidden rounded-md border border-neutral-100 shadow-sm">
       <div className="flex items-start justify-between bg-[#1877f2] p-3 text-white sm:p-4">
         <div>
           <h3 className="mb-2 text-sm font-bold sm:text-base">
@@ -148,20 +148,20 @@ function PriceSummary({ isLoading = false }: PriceSummaryProps) {
             return (
               <Fragment key={qty.optionId}>
                 <div>
-                  <div>จำนวน</div>
+                  <div className="mb-2 font-semibold">จำนวน</div>
                   {qty.quantity}
                 </div>
                 <div>
-                  <div>ประเภทห้องพัก</div>
+                  <div className="mb-2 font-semibold">ประเภทห้องพัก</div>
                   {option.type}
                 </div>
                 <div className="text-right">
-                  ราคาต่อคน
-                  <div>{formatPrice(option.price ?? undefined)}</div>
+                  <div className="mb-2 font-semibold">ราคาต่อคน</div>
+                  {formatPrice(option.price ?? undefined)}
                 </div>
                 <div className="text-right">
-                  รวมราคา
-                  <div>{formatPrice(lineTotal)}</div>
+                  <div className="mb-2 font-semibold">รวมราคา</div>
+                  {formatPrice(lineTotal)}
                 </div>
               </Fragment>
             )

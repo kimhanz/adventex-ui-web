@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils"
 
 function StepIndicator({ currentStep }: { currentStep: number }) {
   const steps = [
-    { number: 1, title: "วันที่ & ผู้เดินทาง" },
-    { number: 2, title: "ข้อมูลผู้สั่งซื้อ" },
+    { number: 1, title: "วันที่และข้อมูลผู้เดินทาง" },
+    { number: 2, title: "ข้อมูลผู้จอง" },
     { number: 3, title: "ส่งคำสั่งจอง" },
   ]
 
@@ -25,7 +25,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
             key={`mobile-${step.number}`}
             className={cn(
               "text-center text-xs font-medium",
-              currentStep >= step.number ? "text-[#1877f2]" : "text-neutral-400"
+              currentStep >= step.number ? "text-[#DC2626]" : "text-neutral-400"
             )}
           >
             {step.title}
@@ -34,13 +34,13 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
       </div>
 
       {/* Desktop view - full step indicator */}
-      <div className="absolute top-7 right-7 left-7 hidden md:flex">
+      <div className="absolute top-7 right-5 left-12 hidden md:flex">
         {steps.slice(0, -1).map((_, index) => (
           <div
             key={`line-${index}`}
             className={cn(
               "h-1 flex-1",
-              currentStep > index + 1 ? "bg-[#1877f2]" : "bg-neutral-200"
+              currentStep > index + 1 ? "bg-[#DC2626]" : "bg-neutral-200"
             )}
           />
         ))}
@@ -57,7 +57,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
               className={cn(
                 "flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold",
                 currentStep >= step.number
-                  ? "bg-[#1877f2] text-white"
+                  ? "bg-[#DC2626] text-white"
                   : "bg-neutral-200 text-neutral-400"
               )}
             >

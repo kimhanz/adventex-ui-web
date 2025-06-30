@@ -1,6 +1,7 @@
 "use client"
 
 import { use, useEffect } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery } from "@tanstack/react-query"
@@ -269,36 +270,6 @@ export default function Step2(props: {
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
             <div>
               <PriceSummary />
-
-              <div className="mt-6 rounded-md border bg-gray-50 p-4 sm:mt-8 sm:p-6">
-                <div className="flex items-start sm:items-center">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200 sm:h-10 sm:w-10">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-gray-600"
-                    >
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                  </div>
-                  <div className="ml-3 sm:ml-4">
-                    <h3 className="text-base font-semibold sm:text-lg">
-                      ให้เราช่วยคุณนะ
-                    </h3>
-                    <p className="text-xs text-gray-600 sm:text-sm">
-                      ยินดีตอบทุกคำถาม จันทร์-ศุกร์ 9.00น.-19.00น. และ
-                      เสาร์-อาทิตย์ 9.00น.-18.00น. โทรหาเลย
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div>
@@ -411,7 +382,15 @@ export default function Step2(props: {
                             htmlFor="acceptTerms"
                             className="cursor-pointer"
                           >
-                            ยอมรับเงื่อนไขการจอง
+                            ฉันอ่านข้อตกลงเรียบร้อยแล้วและยอมรับในเงื่อนไขนี้
+                            <Link
+                              href="/legal/term-conditions"
+                              className="text-[#1877f2]"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Terms & Agreements
+                            </Link>
                           </FormLabel>
                         </div>
                         <FormMessage className="ml-auto" />

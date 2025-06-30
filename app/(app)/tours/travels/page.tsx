@@ -4,9 +4,9 @@ import type { SearchParams } from "nuqs/server"
 import { getQueryClient, trpc } from "@/trpc/server"
 
 import { TourBreadcrumbHeader } from "@/modules/tours/studies/components/tour-breadcrumb-header"
-import { TourListHeader } from "@/modules/tours/studies/components/tour-list/tour-list-header"
 import { FilterPanel } from "@/modules/tours/travels/components/filters/FilterPanel"
 import { TourList } from "@/modules/tours/travels/components/tour-list"
+import { TourListHeader } from "@/modules/tours/travels/components/tour-list/tour-list-header"
 import { loadTourTravelsFilters } from "@/modules/tours/travels/hooks/search-params"
 
 export default async function Page({

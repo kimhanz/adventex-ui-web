@@ -19,27 +19,28 @@ import { Icons } from "./icons"
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Harbin",
+    title: "ฮาร์บิน",
     href: "/tours/travels?destination=Harbin",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "สำรวจเมืองหิมะแห่งแดนเหนือ ชมเทศกาลน้ำแข็งระดับโลก เดินเล่นสถาปัตยกรรมรัสเซียกลางเมืองฮาร์บิน",
   },
   {
-    title: "Beijing",
+    title: "ปักกิ่ง",
     href: "/tours/travels?destination=Beijing",
     description:
-      "For sighted users to preview content available behind a link.",
+      "เยือนเมืองหลวงแห่งประวัติศาสตร์ เดินกำแพงเมืองจีน เที่ยวพระราชวังต้องห้าม และสัมผัสวัฒนธรรมจีนดั้งเดิม",
   },
   {
-    title: "Chengdu",
+    title: "เฉิงตู",
     href: "/tours/travels?destination=Chengdu",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "บ้านเกิดของหมีแพนด้า ลิ้มลองหม้อไฟเสฉวนรสเผ็ดร้อน และผ่อนคลายกับวิถีชีวิตแบบเนิบช้าของชาวเฉิงตู",
   },
   {
-    title: "Shanghai",
+    title: "เซี่ยงไฮ้",
     href: "/tours/travels?destination=Shanghai",
-    description: "Visually or semantically separates content.",
+    description:
+      "สัมผัสมหานครทันสมัยริมแม่น้ำหวงผู่ ชมวิวหอไข่มุก เดินเล่นย่านไว่ทาน และผสานกลิ่นอายตะวันตกกับจีนอย่างลงตัว",
   },
 ]
 
@@ -73,7 +74,7 @@ function MainNav() {
         className="mr-4 flex items-center justify-center gap-1 lg:mr-6"
       >
         <Icons.logo className="size-6 lg:size-10" />
-        <div className="hidden flex-col font-bold text-[#DC2626] uppercase lg:inline-flex ">
+        <div className="hidden flex-col font-bold text-[#DC2626] uppercase lg:inline-flex">
           <span className="text-2xl leading-none">Adventex</span>
           <span className="text-[0.46875rem] leading-none">
             International Group Co., Ltd.
