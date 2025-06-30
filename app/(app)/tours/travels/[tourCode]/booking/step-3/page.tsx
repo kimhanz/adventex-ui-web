@@ -27,16 +27,16 @@ export default function Step3(props: {
   )
 
   // Move redirection logic to useEffect
-  // useEffect(() => {
-  //   if (!bookingData.departureId || !bookingData.quantities?.length) {
-  //     router.push(`/tours/travels/${tourCode}/booking`)
-  //   }
-  // }, [bookingData.departureId, bookingData.quantities, router, tourCode])
+  useEffect(() => {
+    if (!bookingData.departureId || !bookingData.quantities?.length) {
+      router.push(`/tours/travels/${tourCode}/booking`)
+    }
+  }, [bookingData.departureId, bookingData.quantities, router, tourCode])
 
-  // // If we don't have booking data, render nothing while the redirect happens
-  // if (!bookingData.departureId || !bookingData.quantities?.length) {
-  //   return null
-  // }
+  // If we don't have booking data, render nothing while the redirect happens
+  if (!bookingData.departureId || !bookingData.quantities?.length) {
+    return null
+  }
 
   const handleBack = () => {
     router.push(`/tours/travels/${tourCode}/booking/step-2`)

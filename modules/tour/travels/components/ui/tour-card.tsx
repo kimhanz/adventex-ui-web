@@ -55,7 +55,7 @@ function TourCardDetailsGrid({
       </div>
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">มหาลัย</div>
-        <div className="text-xs uppercase">{university.code}</div>
+        <div className="text-xs uppercase">{code}</div>
       </div>
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">รหัสทัวร์</div>
