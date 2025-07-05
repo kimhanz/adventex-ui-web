@@ -1,9 +1,8 @@
 "use client"
 
-import { use, useEffect } from "react"
+import * as React from "react"
 import { useRouter } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
-import { Facebook } from "lucide-react"
 import { useTRPC } from "@/trpc/client"
 
 import { Button } from "@/components/ui/button"
@@ -17,7 +16,7 @@ import { useBooking } from "@/modules/booking/hooks/BookingContext"
 export default function Step3(props: {
   params: Promise<{ tourCode: string }>
 }) {
-  const { tourCode } = use(props.params)
+  const { tourCode } = React.use(props.params)
   const router = useRouter()
   const { bookingData } = useBooking()
 
@@ -26,7 +25,7 @@ export default function Step3(props: {
     trpc.toursStudies.get.queryOptions({ code: tourCode })
   )
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!bookingData.departureId || !bookingData.quantities?.length) {
       router.push(`/tours/studies/${tourCode}/booking`)
     }
@@ -38,15 +37,6 @@ export default function Step3(props: {
 
   const handleBack = () => {
     router.push(`/tours/studies/${tourCode}/booking/step-2`)
-  }
-
-  const handleShare = () => {
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        window.location.href
-      )}`,
-      "_blank"
-    )
   }
 
   if (isLoading) {
