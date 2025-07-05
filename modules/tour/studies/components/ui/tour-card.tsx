@@ -47,18 +47,18 @@ function TourCardDetailsGrid({
   }
 }) {
   return (
-    <div className="divide-border grid grid-cols-3 divide-x">
-      <div className="px-px text-center">
+    <div className="divide-border grid grid-cols-3 gap-2 pt-1 pb-1">
+      <div className="rounded-md border-none bg-gray-100 p-1 px-px text-center">
         <div className="text-muted-foreground text-xs">จำนวนวัน</div>
         <div className="text-xs font-bold text-[#DC2626]">{duration}</div>
       </div>
-      <div className="px-px text-center">
+      <div className="rounded-md border-none bg-gray-100 p-1 px-px text-center">
         <div className="text-muted-foreground text-xs">มหาลัย</div>
         <div className="text-xs font-bold text-[#DC2626] uppercase">
           {university.code}
         </div>
       </div>
-      <div className="px-px text-center">
+      <div className="rounded-md border-none bg-gray-100 p-1 px-px text-center">
         <div className="text-muted-foreground text-xs">รหัสทัวร์</div>
         <div className="text-xs font-bold text-[#DC2626]">{code}</div>
       </div>
@@ -146,7 +146,7 @@ function TourCardDates({
             key={month}
             className="flex items-start gap-1"
           >
-            <div className="text-background inline-block flex-shrink-0 bg-[#1877f2] px-1.5 py-px text-xs">
+            <div className="text-background mx-1 inline-block flex-shrink-0 rounded-sm bg-[#1877f2] px-1.5 py-px text-xs">
               {month}
             </div>
             <div className="flex flex-wrap gap-x-1">
@@ -185,7 +185,7 @@ function TourCardFooter({
   return (
     <div className="bg-muted mt-auto flex items-center justify-between px-2 py-2.5">
       <div className="flex items-end gap-x-2">
-        <div className="text-muted-foreground pb-1 text-sm">เริ่มต้น</div>
+        <div className="text-muted-foreground pb-1 text-sm">เริ่มต้นที่</div>
         <div className="text-2xl font-bold text-[#DC2626]">
           {price.toLocaleString()}
         </div>

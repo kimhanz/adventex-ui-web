@@ -110,8 +110,11 @@ export default function Step3(props: {
         <StepIndicator currentStep={3} />
 
         <div className="mt-6 sm:mt-8">
-          <h1 className="mb-6 text-xl font-bold sm:mb-8 sm:text-2xl">
-            ขั้นตอนที่ 3: ส่งคำสั่งจองทัวร์
+          <h1 className="text-start text-xl font-bold text-[#DC2626] sm:mb-3 sm:text-2xl">
+            ขั้นตอนที่ 3
+          </h1>
+          <h1 className="sm:text-1xl mb-6 text-start text-xl font-semibold sm:mb-8">
+            ส่งคำสั่งจองทัวร์
           </h1>
 
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
@@ -121,8 +124,8 @@ export default function Step3(props: {
 
             <div className="text-center">
               <div className="mb-6 sm:mb-8">
-                <h2 className="mb-3 text-xl font-bold sm:mb-4 sm:text-2xl md:text-3xl">
-                  ขอบคุณที่ไว้วางใจ ใช้บริการทัวร์กับ adventex.co.th
+                <h2 className="mb-3 text-xl font-bold sm:mb-4 sm:text-xl md:text-2xl">
+                  ขอบคุณที่ไว้วางใจ ใช้บริการทัวร์กับ Adventex
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg">
                   เจ้าหน้าที่กำลังดำเนินการ

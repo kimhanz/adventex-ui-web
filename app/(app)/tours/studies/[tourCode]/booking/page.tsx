@@ -212,8 +212,11 @@ export default function Step1(props: {
         <StepIndicator currentStep={1} />
 
         <div className="mt-6 flex h-full w-full flex-col sm:mt-8">
-          <h1 className="mb-6 text-xl font-bold sm:mb-8 sm:text-2xl">
-            ขั้นตอนที่ 1: ระบุวันที่และจำนวนผู้เดินทาง
+          <h1 className="text-start text-xl font-bold text-[#DC2626] sm:mb-3 sm:text-2xl">
+            ขั้นตอนที่ 1
+          </h1>
+          <h1 className="sm:text-1xl mb-6 text-start text-xl font-semibold sm:mb-8">
+            ระบุวันที่และจำนวนผู้เดินทาง
           </h1>
 
           <div className="mb-6 sm:mb-8">

@@ -22,16 +22,16 @@ function BookingInformation({
             className="rounded object-contain"
           />
         </div>
-        <div className="h-full w-full min-w-0 flex-1 text-end">
-          <h1 className="line-clamp-2 text-base font-bold sm:line-clamp-none sm:text-lg md:text-xl">
+        <div className="h-full w-full min-w-0 flex-1 text-start">
+          <div className="py-2 text-lg font-bold text-[#DC2626] sm:text-xl md:text-2xl">
+            <span className="py-2 text-xs text-neutral-400 sm:text-lg">
+              รหัสทัวร์
+            </span>{" "}
+            {code}
+          </div>
+          <h1 className="line-clamp-2 text-base font-semibold sm:line-clamp-none sm:text-lg md:text-xl">
             {name}
           </h1>
-        </div>
-      </div>
-      <div className="flex w-full items-center justify-between text-right sm:mt-0 sm:block sm:w-auto">
-        <div className="text-xs text-neutral-600 sm:text-sm">รหัสทัวร์</div>
-        <div className="text-lg font-bold text-[#DC2626] sm:text-xl md:text-2xl">
-          {code}
         </div>
       </div>
     </div>

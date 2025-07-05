@@ -51,8 +51,7 @@ function formatPrice(price: number | undefined): string {
 
 function TourBookingWidget({
   departureDates,
-  contactPhoneNumber = "02 105 6234",
-  lineId = "@mushroomtravel",
+  contactPhoneNumber = "084 105 7598",
 }: {
   departureDates?:
     | {
@@ -117,8 +116,23 @@ function TourBookingWidget({
   }
 
   return (
-    <div className="sticky top-4 rounded-lg bg-[#1877f2] p-4">
-      <div className="bg-background space-y-4 rounded-lg p-4">
+    <div className="sticky top-4 rounded-(--card-radius) bg-[#1877f2] p-(--card-padding) outline -outline-offset-1 outline-white/25 [--card-padding:--spacing(2)] [--card-radius:var(--radius-2xl)]">
+      <div className="bg-background space-y-4 rounded-[calc(var(--card-radius)-var(--card-padding))] p-4">
+        {/* Contact Info */}
+        <div className="space-y-3">
+          <div className="flex items-center">
+            <div className="mr-3 rounded-md bg-[#DC2626] p-2">
+              <PhoneIcon className="text-background h-6 w-6" />
+            </div>
+            <div>
+              <div className="text-muted-foreground">ติดต่อเรา</div>
+              <div className="text-xl font-bold text-[#DC2626]">
+                {contactPhoneNumber}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {departureDates?.length === 0 ? (
           <>
             <h3 className="text-xl font-bold">
@@ -132,8 +146,6 @@ function TourBookingWidget({
           </>
         ) : (
           <>
-            <h3 className="text-xl font-bold">เลือกวันที่:</h3>
-
             {/* Date Selection Dropdown */}
             <Select
               value={selectedDateIndex.toString()}
@@ -209,35 +221,10 @@ function TourBookingWidget({
               onClick={handleBooking}
               className="text-background w-full bg-linear-to-b from-red-500 to-red-700 bg-[length:100%_100%] bg-[bottom] py-6 text-xl inset-shadow-[0_1px_rgb(255_255_255/0.15)] transition-all hover:bg-[length:100%_150%]"
             >
-              จองเดี๋ยวนี้
+              จองโปรแกรมนี้
             </Button>
           </>
         )}
-
-        {/* Contact Info */}
-        <div className="space-y-3 border-t pt-4">
-          <div className="flex items-center">
-            <div className="mr-3 rounded-full bg-red-500 p-2">
-              <PhoneIcon className="text-background h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-muted-foreground">โทรจองทัวร์นี้</div>
-              <div className="text-xl font-bold text-[#DC2626]">
-                {contactPhoneNumber}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center">
-            <div className="mr-3 rounded-full bg-[#06c755] p-2">
-              <MessageCircleIcon className="text-background h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-muted-foreground">จองผ่านไลน์</div>
-              <div className="text-xl font-bold">{lineId}</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )

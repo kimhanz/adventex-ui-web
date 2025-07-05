@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -31,7 +30,6 @@ function TourItemFooter({
             href={`/tours/studies/${code}`}
           >
             <span>ดูรายละเอียด</span>
-            <ArrowRight className="transform transition-transform duration-150 group-hover:translate-x-1" />
           </Link>
         </Button>
       </div>
