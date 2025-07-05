@@ -31,17 +31,19 @@ function TourImageGallery({
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [api, setApi] = useState<CarouselApi>()
 
+  useEffect(() => {
+    setCurrentImageIndex(0)
+  }, [images.length])
+
   const openImageDialog = (index: number) => {
     setCurrentImageIndex(index)
     setIsDialogOpen(true)
   }
 
-  // Only show first 6 images in the grid, with the last one potentially showing an overlay
   const visibleImages = images.slice(0, 6)
   const hasMoreImages = images.length > 6
-  const remainingCount = images.length - 5
+  const remainingCount = images.length - 6
 
-  // Set the carousel to a specific image index
   const goToImage = useCallback(
     (index: number) => {
       if (api) {
@@ -51,7 +53,6 @@ function TourImageGallery({
     [api]
   )
 
-  // Update current index when carousel changes
   useEffect(() => {
     if (!api) return
 
@@ -61,7 +62,6 @@ function TourImageGallery({
 
     api.on("select", onSelect)
 
-    // Set initial index when dialog opens
     if (isDialogOpen) {
       api.scrollTo(currentImageIndex)
     }
@@ -71,15 +71,7 @@ function TourImageGallery({
     }
   }, [api, isDialogOpen, currentImageIndex])
 
-  // When dialog opens, ensure the carousel is at the correct index
-  useEffect(() => {
-    if (isDialogOpen && api) {
-      // Small delay to ensure the carousel is ready
-      setTimeout(() => {
-        api.scrollTo(currentImageIndex)
-      }, 50)
-    }
-  }, [isDialogOpen, currentImageIndex, api])
+  const [img0, img1, img2, img3, img4, img5] = visibleImages
 
   return (
     <>
@@ -90,25 +82,28 @@ function TourImageGallery({
             onClick={() => openImageDialog(0)}
           >
             <Image
-              src={visibleImages.at(0)?.url || "/placeholder.svg"}
+              src={img0?.url || "/placeholder.svg"}
               width={800}
-              height={500}
-              alt={visibleImages.at(0)?.alt || "N/A"}
-              className="h-auto w-full object-cover transition-transform hover:scale-105"
+              height={525}
+              alt={img0?.alt || ""}
+              className="h-125 w-full object-cover transition-transform hover:scale-105"
+              priority
+              placeholder="blur"
+              blurDataURL="/placeholder.svg"
             />
           </div>
         </div>
         <div className="space-y-2">
           <div
-            className="relative cursor-pointer overflow-hidden rounded-lg"
+            className="relative isolate cursor-pointer overflow-hidden rounded-lg"
             onClick={() => openImageDialog(1)}
           >
             <Image
-              src={visibleImages.at(1)?.url || "/placeholder.svg"}
+              src={img1?.url || "/placeholder.svg"}
               width={800}
-              height={240}
-              alt={visibleImages.at(1)?.alt || "N/A"}
-              className="h-auto w-full object-cover transition-transform hover:scale-105"
+              height={246}
+              alt={img1?.alt || ""}
+              className="h-61.5 w-full object-cover transition-transform hover:scale-105"
             />
           </div>
           <div
@@ -116,11 +111,11 @@ function TourImageGallery({
             onClick={() => openImageDialog(2)}
           >
             <Image
-              src={visibleImages.at(2)?.url || "/placeholder.svg"}
+              src={img2?.url || "/placeholder.svg"}
               width={800}
-              height={240}
-              alt={visibleImages.at(2)?.alt || "N/A"}
-              className="h-auto w-full object-cover transition-transform hover:scale-105"
+              height={246}
+              alt={img2?.alt || ""}
+              className="h-61.5 w-full object-cover transition-transform hover:scale-105"
             />
           </div>
         </div>
@@ -130,30 +125,30 @@ function TourImageGallery({
             onClick={() => openImageDialog(3)}
           >
             <Image
-              src={visibleImages.at(3)?.url || "/placeholder.svg"}
+              src={img3?.url || "/placeholder.svg"}
               width={800}
-              height={240}
-              alt={visibleImages.at(3)?.alt || "N/A"}
-              className="h-auto w-full object-cover transition-transform hover:scale-105"
+              height={246}
+              alt={img3?.alt || ""}
+              className="h-61.5 w-full object-cover transition-transform hover:scale-105"
             />
           </div>
           {hasMoreImages ? (
             <div
               className="relative cursor-pointer overflow-hidden rounded-lg"
-              onClick={() => openImageDialog(5)}
+              onClick={() => openImageDialog(0)}
             >
               <Image
-                src={visibleImages.at(5)?.url || "/placeholder.svg"}
+                src={img5?.url || "/placeholder.svg"}
                 width={800}
-                height={240}
-                alt={visibleImages.at(5)?.alt || "N/A"}
-                className="h-auto w-full object-cover transition-transform hover:scale-105"
+                height={246}
+                alt={img5?.alt || ""}
+                className="h-61.5 w-full object-cover transition-transform hover:scale-105"
               />
               <div
                 className="absolute inset-0 flex items-center justify-center bg-black/60"
                 onClick={(e) => {
                   e.stopPropagation()
-                  openImageDialog(5)
+                  openImageDialog(0)
                 }}
               >
                 <span className="text-background text-xl font-bold">
@@ -167,23 +162,22 @@ function TourImageGallery({
               onClick={() => openImageDialog(4)}
             >
               <Image
-                src={visibleImages.at(4)?.url || "/placeholder.svg"}
+                src={img4?.url || "/placeholder.svg"}
                 width={800}
-                height={240}
-                alt={visibleImages.at(4)?.alt || "N/A"}
-                className="h-auto w-full object-cover transition-transform hover:scale-105"
+                height={246}
+                alt={img4?.alt || ""}
+                className="h-61.5 w-full object-cover transition-transform hover:scale-105"
               />
             </div>
           )}
         </div>
       </div>
 
-      {/* Image Carousel Dialog with proper accessibility */}
       <Dialog
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       >
-        <DialogContent className="max-w-5xl border-none bg-black/90 p-0">
+        <DialogContent className="w-[95vw] max-w-none border-none bg-black/90 p-0 sm:w-[90vw] 2xl:w-[80vw]">
           {/* Hidden but accessible title and description for screen readers */}
           <DialogTitle className="sr-only">Tour Image Gallery</DialogTitle>
           <DialogDescription className="sr-only">
@@ -207,7 +201,7 @@ function TourImageGallery({
             className="w-full"
             setApi={setApi}
           >
-            <CarouselContent className="h-[80vh]">
+            <CarouselContent className="h-[90vh]">
               {images.map((image, index) => (
                 <CarouselItem
                   key={index}
@@ -235,11 +229,11 @@ function TourImageGallery({
             />
           </Carousel>
 
-          {/* Custom indicator dots that work with the Carousel */}
           <div className="absolute right-0 bottom-4 left-0 z-10 flex justify-center gap-2">
             {images.map((_, index) => (
               <button
                 key={index}
+                role="tab"
                 className={`h-2 w-2 rounded-full transition-colors ${
                   index === currentImageIndex ? "bg-background" : "bg-muted"
                 }`}

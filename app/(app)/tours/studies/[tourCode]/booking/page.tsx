@@ -29,7 +29,6 @@ import { BookingInformation } from "@/modules/booking/components/ui/BookingInfor
 import { StepIndicator } from "@/modules/booking/components/ui/StepIndicator"
 import { useBooking } from "@/modules/booking/hooks/BookingContext"
 
-// Helper function to format the date range using Intl
 function formatDateRange(
   startDate?: string | null,
   endDate?: string | null
@@ -40,22 +39,20 @@ function formatDateRange(
   const options: Intl.DateTimeFormatOptions = {
     day: "numeric",
     month: "short",
-    year: "numeric", // Use Gregorian year for simplicity
+    year: "numeric",
   }
   const formatter = new Intl.DateTimeFormat("th-TH", options)
 
   const formattedStart = formatter.format(start)
   const formattedEnd = formatter.format(end)
 
-  // Check if start and end dates fall on the exact same day (ignoring time)
   if (start.toDateString() === end.toDateString()) return formattedStart
 
   return `${formattedStart} - ${formattedEnd}`
 }
 
-// Helper function to format currency using Intl
 function formatPrice(price: number | undefined): string {
-  if (price === undefined) return "-" // Or handle as needed
+  if (price === undefined) return "-"
 
   const formatter = new Intl.NumberFormat("th-TH", {
     style: "decimal",
@@ -74,7 +71,6 @@ export default function Step1(props: {
   const router = useRouter()
   const { bookingData, updateBookingData } = useBooking()
 
-  // Initialize quantities from booking data if available
   const [quantities, setQuantities] = useState<Record<string, number>>(() => {
     if (bookingData.quantities?.length) {
       return bookingData.quantities.reduce(
@@ -93,16 +89,14 @@ export default function Step1(props: {
     trpc.toursStudies.get.queryOptions({ code: tourCode })
   )
 
-  // Use departureId from query params if available, otherwise from bookingData
   const [selectedDateId, setSelectedDateId] = useState<string>(
     departureId || bookingData.departureId || ""
   )
 
-  // When departureId changes in URL, update selectedDateId
   useEffect(() => {
     if (departureId) {
       setSelectedDateId(departureId)
-      setQuantities({}) // Only reset quantities if coming from URL param
+      setQuantities({})
     }
   }, [departureId])
 
@@ -110,7 +104,6 @@ export default function Step1(props: {
     (date) => date.id === selectedDateId
   )
 
-  // Calculate totals
   const totalPeople = Object.values(quantities).reduce((a, b) => a + b, 0)
   const totalPrice =
     selectedDeparture?.priceOptions?.reduce((total, option) => {
@@ -206,7 +199,7 @@ export default function Step1(props: {
 
   return (
     <>
-      <header>
+      <header className="flex flex-col space-y-4 px-4 py-4 sm:space-y-6 sm:px-6 sm:py-6">
         <BookingBreadcrumb name={data?.name || "N/A"} />
         <BookingInformation
           name={data?.name || "N/A"}
@@ -215,7 +208,7 @@ export default function Step1(props: {
         />
       </header>
 
-      <div className="py-4 sm:py-8">
+      <div className="px-4 py-4 !pt-0 sm:px-6 sm:py-6">
         <StepIndicator currentStep={1} />
 
         <div className="mt-6 flex h-full w-full flex-col sm:mt-8">

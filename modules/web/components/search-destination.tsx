@@ -161,7 +161,8 @@ export const SearchDestination = () => {
   const id = React.useId()
   const router = useRouter()
 
-  const [university, setUniversity] = React.useState<string | undefined>()
+  const [tourPackage, setTourPackage] = React.useState<string | undefined>()
+  const [destination, setDestination] = React.useState<string | undefined>()
 
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: new Date(),
@@ -177,15 +178,24 @@ export const SearchDestination = () => {
   function handleSubmit() {
     const newSearchParams = new URLSearchParams()
 
-    if (date !== undefined)
-      newSearchParams.set(
-        "month",
-        getMonthName((date?.from?.getMonth() || 0) + 1)
-      )
-    if (university !== undefined)
-      newSearchParams.set("university", String(university))
+    if (date !== undefined) {
+      const dateNumber = (date?.from?.getMonth() || 0) + 1
+      newSearchParams.set("month", getMonthName(dateNumber))
+    }
 
-    router.push(`/tours/studies?${newSearchParams}`)
+    if (tourPackage === "travel") {
+      if (destination !== undefined) {
+        newSearchParams.set("destination", destination)
+      }
+
+      router.push(`/tours/travels?${newSearchParams}`)
+    } else {
+      if (destination !== undefined) {
+        newSearchParams.set("university", destination)
+      }
+
+      router.push(`/tours/studies?${newSearchParams}`)
+    }
   }
 
   return (
@@ -202,20 +212,40 @@ export const SearchDestination = () => {
               </Label>
               <Select
                 onValueChange={(value) => {
-                  setUniversity(value)
+                  setDestination(value)
                 }}
+                value={destination}
+                disabled={!tourPackage}
               >
                 <SelectTrigger
                   id={`destination-${id}`}
                   className="bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground w-full shadow-none"
                 >
-                  <SelectValue placeholder="เลือกปลายทาง" />
+                  <SelectValue
+                    placeholder={
+                      tourPackage ? "เลือกปลายทาง" : "กรุณาเลือกแพ็คเกจก่อน"
+                    }
+                  />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="hit">
-                    Harbin Institute of Technology
-                  </SelectItem>
-                  <SelectItem value="hnu">Harbin Normal University</SelectItem>
+                  {tourPackage === "study" && (
+                    <>
+                      <SelectItem value="hit">
+                        Harbin Institute of Technology
+                      </SelectItem>
+                      <SelectItem value="hnu">
+                        Harbin Normal University
+                      </SelectItem>
+                    </>
+                  )}
+                  {tourPackage === "travel" && (
+                    <>
+                      <SelectItem value="Harbin">ฮาร์บิน</SelectItem>
+                      <SelectItem value="Beijing">ปักกิ่ง</SelectItem>
+                      <SelectItem value="Chengdu">เฉิงตู</SelectItem>
+                      <SelectItem value="Shianghai">เซี่ยงไฮ้</SelectItem>
+                    </>
+                  )}
                 </SelectContent>
               </Select>
             </div>
@@ -227,7 +257,13 @@ export const SearchDestination = () => {
               >
                 แพ็คเกจ
               </Label>
-              <Select>
+              <Select
+                onValueChange={(value) => {
+                  setTourPackage(value)
+                  setDestination(undefined) // clear previous destination
+                }}
+                value={tourPackage}
+              >
                 <SelectTrigger
                   id={`package-${id}`}
                   className="bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground w-full shadow-none"
@@ -236,6 +272,7 @@ export const SearchDestination = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="study">แพ็คเกจเรียน</SelectItem>
+                  <SelectItem value="travel">แพ็คเกจท่องเที่ยว</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -218,6 +218,13 @@ export interface TourStudy {
   university: {
     name: string;
     code: string;
+    gallery?:
+      | {
+          image?: (string | null) | Media;
+          caption?: string | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -494,6 +501,13 @@ export interface TourStudiesSelect<T extends boolean = true> {
     | {
         name?: T;
         code?: T;
+        gallery?:
+          | T
+          | {
+              image?: T;
+              caption?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
