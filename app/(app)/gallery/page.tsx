@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <>
-      <div className="border-grid">
-        <div className="container-wrapper border-b">
-          <div className="border-border mx-auto max-w-screen-lg border-r border-l border-dashed">
+      <div>
+        <div>
+          <div className="mx-auto max-w-screen-lg">
             <div className="flex flex-col items-center justify-center">
               <h2 className="p-4 text-4xl font-bold xl:text-6xl">แกลลอรี่</h2>
             </div>
           </div>
 
-          <div className="border-border border-t border-dashed">
-            <div className="border-border mx-auto max-w-screen-lg border-r border-l border-dashed">
+          <div>
+            <div className="mx-auto max-w-screen-lg">
               <div className="flex flex-col items-center justify-center text-center">
                 <div className="flex flex-col gap-y-px p-8">
                   <p className="text-muted-foreground max-w-prose">
@@ -36,8 +36,8 @@ export default function GalleryPage() {
         </div>
       </div>
 
-      <div className="border-grid">
-        <div className="container-wrapper">
+      <div>
+        <div>
           <div className="container mx-auto py-4 md:py-8">
             <GalleryImages />
           </div>
