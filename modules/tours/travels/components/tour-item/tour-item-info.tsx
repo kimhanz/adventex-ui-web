@@ -19,13 +19,13 @@ function TourItemInfo({
         <h2>{name}</h2>
       </Link>
 
-      <div className="divide-border grid grid-cols-2 gap-px divide-x py-4">
-        <div className="text-center">
+      <div className="divide-border grid grid-cols-2 gap-3 divide-x py-4">
+        <div className="rounded-md border-none bg-gray-100 p-2 text-center">
           <div className="text-muted-foreground text-xs">รหัสทัวร์</div>
           <div className="font-medium text-ellipsis text-[#DC2626]">{code}</div>
         </div>
 
-        <div className="text-center">
+        <div className="rounded-md border-none bg-gray-100 p-2 text-center">
           <div className="text-muted-foreground text-xs">จำนวนวัน</div>
           <div>{duration}</div>
         </div>

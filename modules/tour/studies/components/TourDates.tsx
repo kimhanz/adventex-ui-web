@@ -146,12 +146,6 @@ function TourDates({
                       <ClockIcon className="text-muted-foreground h-4 w-4" />
                     </div>
                     <div className="flex items-center gap-2">
-                      <Image
-                        src="/placeholder.svg?height=24&width=24" // Placeholder flag, update if needed
-                        width={24}
-                        height={24}
-                        alt="Flag"
-                      />
                       {/* Use the updated helper function */}
                       {formatDateRange(item.startDate, item.endDate)}
                     </div>

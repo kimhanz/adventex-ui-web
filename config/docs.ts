@@ -36,22 +36,22 @@ export const docsConfig: DocsConfig = {
         {
           href: "/tours/travels?destination=Harbin",
           items: [],
-          title: "Harbin",
+          title: "ฮาร์บิน",
         },
         {
           href: "/tours/travels?destination=Beijing",
           items: [],
-          title: "Beijing",
+          title: "ปักกิ่ง",
         },
         {
           href: "/tours/travels?destination=Chengdu",
           items: [],
-          title: "Chengdu",
+          title: "เฉิงตู",
         },
         {
           href: "/tours/travels?destination=Shanghai",
           items: [],
-          title: "Shanghai",
+          title: "เซี่ยงไฮ้",
         },
       ],
     },

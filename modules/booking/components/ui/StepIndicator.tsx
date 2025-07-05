@@ -34,7 +34,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
       </div>
 
       {/* Desktop view - full step indicator */}
-      <div className="absolute top-7 right-5 left-12 hidden md:flex">
+      <div className="absolute top-6 right-5 left-15 hidden md:flex">
         {steps.slice(0, -1).map((_, index) => (
           <div
             key={`line-${index}`}
@@ -55,7 +55,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
           >
             <div
               className={cn(
-                "flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold",
+                "flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold",
                 currentStep >= step.number
                   ? "bg-[#DC2626] text-white"
                   : "bg-neutral-200 text-neutral-400"

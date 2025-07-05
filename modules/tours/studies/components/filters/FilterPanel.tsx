@@ -201,6 +201,7 @@ function FilterPanel() {
                   <Button
                     type="submit"
                     form="filter-form"
+                    className="bg-[#DC2626]"
                   >
                     แสดงผลการกรอง
                   </Button>
