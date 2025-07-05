@@ -38,25 +38,17 @@ function TourCardImage({
 function TourCardDetailsGrid({
   code,
   duration,
-  university,
 }: {
   code: string
   duration: string
-  university: {
-    name: string
-    code: string
-  }
 }) {
   return (
-    <div className="divide-border grid grid-cols-3 divide-x">
+    <div className="divide-border grid grid-cols-2 divide-x">
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">จำนวนวัน</div>
         <div className="text-xs font-bold">{duration}</div>
       </div>
-      <div className="px-px text-center">
-        <div className="text-muted-foreground text-xs">มหาลัย</div>
-        <div className="text-xs uppercase">{code}</div>
-      </div>
+
       <div className="px-px text-center">
         <div className="text-muted-foreground text-xs">รหัสทัวร์</div>
         <div className="text-xs">{code}</div>
@@ -226,7 +218,6 @@ function TourCard({ tour }: { tour: TourStudiesRecommended }) {
 
         <TourCardDetailsGrid
           duration={tour.duration || "N/A"}
-          university={tour.university}
           code={tour.code}
         />
         <TourCardDates departureDates={tour.departureDates} />

@@ -30,7 +30,6 @@ import { PriceSummary } from "@/modules/booking/components/ui/PriceSummary"
 import { StepIndicator } from "@/modules/booking/components/ui/StepIndicator"
 import { useBooking } from "@/modules/booking/hooks/BookingContext"
 
-// Define Zod schema for the form
 const BookingFormSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
@@ -95,21 +94,15 @@ export default function Step2(props: {
     mode: "onTouched",
   })
 
-  // Centralized redirection logic
   useEffect(() => {
-    // Don't perform redirects if tour data is still loading
     if (isTourDataLoading) return
 
-    // If tour data has finished loading but is not present, or essential bookingData.departureId is missing, redirect.
     if (!tourQueryData || !bookingData.departureId) {
-      // console.log("Redirecting: Missing tourQueryData or bookingData.departureId");
       router.push(`/tours/studies/${tourCode}/booking`)
       return
     }
 
-    // If tour data and departureId are present, but quantities are missing (another essential for this step), redirect.
     if (!bookingData.quantities?.length) {
-      // console.log("Redirecting: Missing bookingData.quantities");
       router.push(`/tours/studies/${tourCode}/booking`)
       return
     }
@@ -122,7 +115,6 @@ export default function Step2(props: {
     tourCode,
   ])
 
-  // Form submission handler
   const onSubmit: SubmitHandler<BookingFormData> = async (formData) => {
     updateBookingData(formData)
 
@@ -153,7 +145,7 @@ export default function Step2(props: {
     }
     const emailBookingId: string = bookingData.departureId
     const emailPayload = {
-      to: "support@adventex.co.th", // Hardcoded as per user's last change
+      to: "support@adventex.co.th",
       customerName: `${formData.firstName} ${formData.lastName}`,
       tourName: tourName,
       bookingId: emailBookingId,
@@ -170,9 +162,7 @@ export default function Step2(props: {
     router.push(`/tours/studies/${tourCode}/booking`)
   }
 
-  // Conditional Rendering Logic
   if (isTourDataLoading) {
-    // Skeleton UI from user's last changes
     return (
       <div className="container py-4 sm:py-8">
         <div className="mx-auto max-w-3xl">
@@ -235,7 +225,6 @@ export default function Step2(props: {
     )
   }
 
-  // If data is not yet sufficient for rendering the form (useEffect should handle redirection)
   if (
     !tourQueryData ||
     !bookingData.departureId ||
@@ -246,11 +235,9 @@ export default function Step2(props: {
     )
   }
 
-  // All checks passed, render the form
-  // (User's existing JSX for the form structure is preserved here)
   return (
     <>
-      <header>
+      <header className="flex flex-col space-y-4 px-4 py-4 sm:space-y-6 sm:px-6 sm:py-6">
         <BookingBreadcrumb name={tourQueryData?.name || "N/A"} />
         <BookingInformation
           name={tourQueryData?.name || "N/A"}
@@ -259,7 +246,7 @@ export default function Step2(props: {
         />
       </header>
 
-      <div className="py-4 sm:py-8">
+      <div className="px-4 py-4 !pt-0 sm:px-6 sm:py-6">
         <StepIndicator currentStep={2} />
 
         <div className="mt-6 sm:mt-8">

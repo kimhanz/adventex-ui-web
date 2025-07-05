@@ -49,6 +49,13 @@ export const toursStudiesRouter = createTRPCRouter({
         ...payloadData.docs[0],
         image: payloadData.docs[0].image as Media,
         brochure: payloadData.docs[0].brochure as Media,
+        university: {
+          ...payloadData.docs[0].university,
+          gallery: payloadData.docs[0].university.gallery?.map((item) => ({
+            ...item,
+            image: item.image as Media,
+          })),
+        },
       }
     }),
 

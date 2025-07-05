@@ -59,6 +59,7 @@ export const TourStudies: CollectionConfig = {
       type: "array",
       admin: {
         position: "sidebar",
+        initCollapsed: true,
       },
       fields: [
         {
@@ -94,6 +95,7 @@ export const TourStudies: CollectionConfig = {
       type: "array",
       admin: {
         position: "sidebar",
+        initCollapsed: true,
       },
       fields: [
         {
@@ -116,6 +118,26 @@ export const TourStudies: CollectionConfig = {
           name: "code",
           type: "text",
           required: true,
+        },
+        {
+          name: "gallery",
+          type: "array",
+          label: "รวมภาพมหาลัย",
+          admin: {
+            initCollapsed: true,
+          },
+          fields: [
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+            },
+            {
+              name: "caption",
+              type: "text",
+              label: "คำบรรยายภาพ",
+            },
+          ],
         },
       ],
     },

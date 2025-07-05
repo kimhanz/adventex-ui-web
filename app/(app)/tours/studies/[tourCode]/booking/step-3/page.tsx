@@ -26,14 +26,12 @@ export default function Step3(props: {
     trpc.toursStudies.get.queryOptions({ code: tourCode })
   )
 
-  // Move redirection logic to useEffect
   useEffect(() => {
     if (!bookingData.departureId || !bookingData.quantities?.length) {
       router.push(`/tours/studies/${tourCode}/booking`)
     }
   }, [bookingData.departureId, bookingData.quantities, router, tourCode])
 
-  // If we don't have booking data, render nothing while the redirect happens
   if (!bookingData.departureId || !bookingData.quantities?.length) {
     return null
   }
@@ -43,7 +41,6 @@ export default function Step3(props: {
   }
 
   const handleShare = () => {
-    // Implement Facebook sharing
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         window.location.href
@@ -97,7 +94,7 @@ export default function Step3(props: {
 
   return (
     <>
-      <header>
+      <header className="flex flex-col space-y-4 px-4 py-4 sm:space-y-6 sm:px-6 sm:py-6">
         <BookingBreadcrumb name={data?.name || "N/A"} />
         <BookingInformation
           name={data?.name || "N/A"}
@@ -106,7 +103,7 @@ export default function Step3(props: {
         />
       </header>
 
-      <div className="py-4 sm:py-8">
+      <div className="px-4 py-4 !pt-0 sm:px-6 sm:py-6">
         <StepIndicator currentStep={3} />
 
         <div className="mt-6 sm:mt-8">
