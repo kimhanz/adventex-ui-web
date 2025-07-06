@@ -6,7 +6,7 @@ import { useTRPC } from "@/trpc/client"
 
 import { Skeleton } from "@/components/ui/skeleton"
 
-import { useBooking } from "../../hooks/BookingContext"
+import { useBooking } from "../../hooks/booking-context"
 
 // Helper function to format the date range using Intl
 function formatDateRange(

@@ -2,9 +2,9 @@ import { Media } from "@/payload-types"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-import { TourBrochure } from "./TourBrochure"
-import { TourFAQ } from "./TourFAQ"
-import { TourTerms } from "./TourTerms"
+import { TourBrochure } from "./tour-brochure"
+import { TourFAQ } from "./tour-faq"
+import { TourTerms } from "./tour-terms"
 
 function TourTabs({ brochure }: { brochure: Media }) {
   return (

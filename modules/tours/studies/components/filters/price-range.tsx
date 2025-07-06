@@ -3,7 +3,7 @@
 import { Slider } from "@/components/ui/slider"
 import { useTourStudiesFilters } from "@/modules/tours/studies/hooks/use-tour-studies-filters"
 
-import { FilterSection } from "../ui/FilterSection"
+import { FilterSection } from "../ui/filter-section"
 
 function PriceRange({
   minValue,
