@@ -3,7 +3,7 @@ import { Resend } from "resend"
 import { z } from "zod"
 import { baseProcedure, createTRPCRouter } from "@/trpc/init"
 
-import { BookingConfirmationEmail } from "@/modules/emails/BookingConfirmationEmail"
+import BookingConfirmationEmail from "@/modules/emails/booking-confirmation-email"
 
 const resendApiKey = process.env.RESEND_API_KEY
 const resend = new Resend(resendApiKey)
