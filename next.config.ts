@@ -2,7 +2,6 @@ import type { NextConfig } from "next"
 import { withPayload } from "@payloadcms/next/withPayload"
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   reactStrictMode: true,
 
   // Transpile Payload (and its internal deps) so SWC can handle ESM in node_modules
