@@ -14,7 +14,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <NuqsAdapter>
         <TRPCReactProvider>
           {children}
-          <Toaster richColors />
+          <Toaster
+            richColors
+            position="top-center"
+          />
         </TRPCReactProvider>
       </NuqsAdapter>
     </PHProvider>
