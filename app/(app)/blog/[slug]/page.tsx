@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { Calendar, User } from "lucide-react"
 import { createTRPCContext } from "@/trpc/init"
-import { appRouter } from "@/trpc/routers/_app"
+import { appRouter } from "@/trpc/routers/app"
 
 import { Badge } from "@/components/ui/badge"
 import { BlogDetailContent } from "@/modules/blog/components/blog-detail/blog-detail-content"
