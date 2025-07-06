@@ -7,11 +7,11 @@ import { useTRPC } from "@/trpc/client"
 
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import { BookingBreadcrumb } from "@/modules/booking/components/ui/BookingBreadcrumb"
-import { BookingInformation } from "@/modules/booking/components/ui/BookingInformation"
-import { PriceSummary } from "@/modules/booking/components/ui/PriceSummary"
-import { StepIndicator } from "@/modules/booking/components/ui/StepIndicator"
-import { useBooking } from "@/modules/booking/hooks/BookingContext"
+import { BookingBreadcrumb } from "@/modules/booking/components/ui/booking-breadcrumb"
+import { BookingInformation } from "@/modules/booking/components/ui/booking-information"
+import { PriceSummary } from "@/modules/booking/components/ui/price-summary"
+import { StepIndicator } from "@/modules/booking/components/ui/step-indicator"
+import { useBooking } from "@/modules/booking/hooks/booking-context"
 
 export default function Step3(props: {
   params: Promise<{ tourCode: string }>

@@ -24,11 +24,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Textarea } from "@/components/ui/textarea"
-import { BookingBreadcrumb } from "@/modules/booking/components/ui/BookingBreadcrumb"
-import { BookingInformation } from "@/modules/booking/components/ui/BookingInformation"
-import { PriceSummary } from "@/modules/booking/components/ui/PriceSummary"
-import { StepIndicator } from "@/modules/booking/components/ui/StepIndicator"
-import { useBooking } from "@/modules/booking/hooks/BookingContext"
+import { BookingBreadcrumb } from "@/modules/booking/components/ui/booking-breadcrumb"
+import { BookingInformation } from "@/modules/booking/components/ui/booking-information"
+import { PriceSummary } from "@/modules/booking/components/ui/price-summary"
+import { StepIndicator } from "@/modules/booking/components/ui/step-indicator"
+import { useBooking } from "@/modules/booking/hooks/booking-context"
 
 const BookingFormSchema = z.object({
   firstName: z.string().min(1, "First name is required"),

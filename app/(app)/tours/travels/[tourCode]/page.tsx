@@ -1,7 +1,7 @@
 import * as React from "react"
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import { createTRPCContext } from "@/trpc/init"
-import { appRouter } from "@/trpc/routers/_app"
+import { appRouter } from "@/trpc/routers/app"
 import { getQueryClient, trpc } from "@/trpc/server"
 
 import { Skeleton } from "@/components/ui/skeleton"
