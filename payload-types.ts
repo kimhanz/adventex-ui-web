@@ -264,6 +264,13 @@ export interface TourTravel {
         id?: string | null;
       }[]
     | null;
+  gallery?:
+    | {
+        image?: (string | null) | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -544,6 +551,13 @@ export interface TourTravelSelect<T extends boolean = true> {
     | T
     | {
         highlight?: T;
+        id?: T;
+      };
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
         id?: T;
       };
   updatedAt?: T;
