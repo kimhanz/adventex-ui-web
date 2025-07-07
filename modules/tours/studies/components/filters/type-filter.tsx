@@ -5,8 +5,8 @@ import { useTRPC } from "@/trpc/client"
 
 import { useTourStudiesFilters } from "@/modules/tours/studies/hooks/use-tour-studies-filters"
 
-import { FilterCheckboxItem } from "../ui/FilterCheckboxItem"
-import { FilterSection } from "../ui/FilterSection"
+import { FilterCheckboxItem } from "../ui/filter-checkbox-item"
+import { FilterSection } from "../ui/filter-section"
 
 // Array ของ type codes
 const typeCodes = ["short", "long"] as const

@@ -1,5 +1,5 @@
-import { FilterPanelSkeleton } from "@/modules/tours/studies/components/skeletons/FilterPanelSkeleton"
-import { TourSectionSkeleton } from "@/modules/tours/studies/components/skeletons/TourSectionSkeleton"
+import { FilterPanelSkeleton } from "@/modules/tours/studies/components/skeletons/filter-panel-skeleton"
+import { TourSectionSkeleton } from "@/modules/tours/studies/components/skeletons/tour-section-skeleton"
 import { TourBreadcrumbHeader } from "@/modules/tours/studies/components/tour-breadcrumb-header"
 import { TourInformationHeader } from "@/modules/tours/studies/components/tour-information-header"
 

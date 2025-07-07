@@ -24,10 +24,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { BookingBreadcrumb } from "@/modules/booking/components/ui/BookingBreadcrumb"
-import { BookingInformation } from "@/modules/booking/components/ui/BookingInformation"
-import { StepIndicator } from "@/modules/booking/components/ui/StepIndicator"
-import { useBooking } from "@/modules/booking/hooks/BookingContext"
+import { BookingBreadcrumb } from "@/modules/booking/components/ui/booking-breadcrumb"
+import { BookingInformation } from "@/modules/booking/components/ui/booking-information"
+import { StepIndicator } from "@/modules/booking/components/ui/step-indicator"
+import { useBooking } from "@/modules/booking/hooks/booking-context"
 
 function formatDateRange(
   startDate?: string | null,

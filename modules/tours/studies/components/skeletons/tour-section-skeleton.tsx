@@ -1,6 +1,6 @@
 import { buttonVariants } from "@/components/ui/button"
 
-import { TourViewSkeleton } from "./TourViewSkeleton"
+import { TourViewSkeleton } from "./tour-view-skeleton"
 
 function TourSectionSkeleton() {
   return (

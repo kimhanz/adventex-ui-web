@@ -1,5 +1,5 @@
 import { inferRouterOutputs } from "@trpc/server"
-import { AppRouter } from "@/trpc/routers/_app"
+import { AppRouter } from "@/trpc/routers/app"
 
 export type TourStudy = inferRouterOutputs<AppRouter>["toursStudies"]["get"]
 

@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
-import { FilterSectionSkeleton } from "./FilterSectionSkeleton"
-import { PriceRangeFilterSkeleton } from "./PriceRangeFilterSkeleton"
+import { FilterSectionSkeleton } from "./filter-section-skeleton"
+import { PriceRangeFilterSkeleton } from "./price-range-filter-skeleton"
 
 function FilterPanelSkeleton() {
   return (

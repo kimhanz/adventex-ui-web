@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { createTRPCContext } from "@/trpc/init"
-import { appRouter } from "@/trpc/routers/_app"
+import { appRouter } from "@/trpc/routers/app"
 
 import { Button } from "@/components/ui/button"
 import { generateBlogSEO } from "@/modules/blog/utils/seo"

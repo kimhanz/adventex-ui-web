@@ -1,18 +1,18 @@
 import * as React from "react"
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import { createTRPCContext } from "@/trpc/init"
-import { appRouter } from "@/trpc/routers/_app"
+import { appRouter } from "@/trpc/routers/app"
 import { getQueryClient, trpc } from "@/trpc/server"
 
 import { Skeleton } from "@/components/ui/skeleton"
-import { RecommendedTours } from "@/modules/tour/studies/components/RecommendedTours"
-import { TourBookingWidget } from "@/modules/tour/studies/components/TourBookingWidget"
-import { TourBreadcrumb } from "@/modules/tour/studies/components/TourBreadcrumb"
-import { TourDates } from "@/modules/tour/studies/components/TourDates"
-import { TourDetails } from "@/modules/tour/studies/components/TourDetails"
-import { TourHeader } from "@/modules/tour/studies/components/TourHeader"
-import { TourImageGallery } from "@/modules/tour/studies/components/TourImageGallery"
-import { TourTabs } from "@/modules/tour/studies/components/TourTabs"
+import { RecommendedTours } from "@/modules/tour/studies/components/recommended-tours"
+import { TourBookingWidget } from "@/modules/tour/studies/components/tour-booking-widget"
+import { TourBreadcrumb } from "@/modules/tour/studies/components/tour-breadcrumb"
+import { TourDates } from "@/modules/tour/studies/components/tour-dates"
+import { TourDetails } from "@/modules/tour/studies/components/tour-details"
+import { TourHeader } from "@/modules/tour/studies/components/tour-header"
+import { TourImageGallery } from "@/modules/tour/studies/components/tour-image-gallery"
+import { TourTabs } from "@/modules/tour/studies/components/tour-tabs"
 
 export default async function TourCode(props: {
   params: Promise<{ tourCode: string }>

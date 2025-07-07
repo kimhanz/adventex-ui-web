@@ -22,25 +22,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useTourTravelsFilters } from "@/modules/tours/travels/hooks/use-tour-travels-filters"
 
-import { DestinationFilter } from "./destination-filter"
-import { DurationFilter } from "./duration-filter"
-import { PriceRange } from "./PriceRange"
+import { useTourStudiesFilters } from "../../hooks/use-tour-studies-filters"
+import { MonthFilter } from "./month-filter"
+import { PriceRange } from "./price-range"
+import { SeasonFilter } from "./season-filter"
+import { TypeFilter } from "./type-filter"
+import { UniversityFilter } from "./university-filter"
 
 type SortValue = "popular" | "time" | "price"
 
 function FilterPanel() {
   const isMobile = useIsMobile()
 
-  const [filters, setFilters] = useTourTravelsFilters()
+  const [filters, setFilters] = useTourStudiesFilters()
 
   // Form state for mobile filters (mirrors URL state)
   const [formState, setFormState] = useState({
     minPrice: filters.minPrice || 0,
     maxPrice: filters.maxPrice || 200000,
-    destination: filters.destination || "",
-    duration: filters.duration || "",
+    type: filters.type || "",
+    university: filters.university || "",
+    season: filters.season || "",
+    month: filters.month || "",
   })
 
   // Update form state when URL params change
@@ -49,14 +53,18 @@ function FilterPanel() {
     setFormState({
       minPrice: filters.minPrice || 0,
       maxPrice: filters.maxPrice || 200000,
-      destination: filters.destination || "",
-      duration: filters.duration || "",
+      type: filters.type || "",
+      university: filters.university || "",
+      season: filters.season || "",
+      month: filters.month || "",
     })
   }, [
     filters.minPrice,
     filters.maxPrice,
-    filters.destination,
-    filters.duration,
+    filters.type,
+    filters.university,
+    filters.season,
+    filters.month,
   ])
 
   // Handle form submission - update URL params all at once
@@ -66,8 +74,10 @@ function FilterPanel() {
     setFilters({
       minPrice: formState.minPrice,
       maxPrice: formState.maxPrice,
-      destination: formState.destination,
-      duration: formState.duration,
+      type: formState.type,
+      university: formState.university,
+      season: formState.season,
+      month: formState.month,
       sort: filters.sort,
     })
   }
@@ -78,16 +88,20 @@ function FilterPanel() {
     setFormState({
       minPrice: 0,
       maxPrice: 200000,
-      destination: "",
-      duration: "",
+      type: "",
+      university: "",
+      season: "",
+      month: "",
     })
 
     // Also reset URL state immediately
     setFilters({
       minPrice: 0,
       maxPrice: 200000,
-      destination: "",
-      duration: "",
+      type: "",
+      university: "",
+      season: "",
+      month: "",
       sort: filters.sort,
     })
   }
@@ -138,35 +152,43 @@ function FilterPanel() {
                         minValue={formState.minPrice}
                         maxValue={formState.maxPrice}
                         onValueMinChange={(value) =>
-                          setFormState((prev) => ({
-                            ...prev,
-                            minPrice: value,
-                          }))
+                          setFormState((prev) => ({ ...prev, minPrice: value }))
                         }
                         onValueMaxChange={(value) =>
+                          setFormState((prev) => ({ ...prev, maxPrice: value }))
+                        }
+                      />
+
+                      <TypeFilter
+                        value={formState.type}
+                        onChange={(value) =>
+                          setFormState((prev) => ({ ...prev, type: value }))
+                        }
+                      />
+
+                      <UniversityFilter
+                        value={formState.university}
+                        onChange={(value) =>
                           setFormState((prev) => ({
                             ...prev,
-                            maxPrice: value,
+                            university: value,
                           }))
                         }
                       />
 
-                      <DestinationFilter
-                        value={formState.destination}
+                      <SeasonFilter
+                        value={formState.season}
                         onChange={(value) =>
-                          setFormState((prev) => ({
-                            ...prev,
-                            destination: value,
-                          }))
+                          setFormState((prev) => ({ ...prev, season: value }))
                         }
                       />
 
-                      <DurationFilter
-                        value={formState.duration}
+                      <MonthFilter
+                        value={formState.month}
                         onChange={(value) =>
                           setFormState((prev) => ({
                             ...prev,
-                            duration: value,
+                            month: value,
                           }))
                         }
                       />
@@ -179,6 +201,7 @@ function FilterPanel() {
                   <Button
                     type="submit"
                     form="filter-form"
+                    className="bg-[#DC2626]"
                   >
                     แสดงผลการกรอง
                   </Button>
@@ -200,7 +223,7 @@ function FilterPanel() {
 
   // Desktop view
   return (
-    <aside className="hidden w-full space-y-2 md:block md:w-72">
+    <aside className="hidden w-full space-y-2 px-4 md:block md:w-72">
       <div className="flex items-end justify-between">
         <div className="text-2xl font-semibold">กรองการค้นหา</div>
         <div
@@ -215,8 +238,10 @@ function FilterPanel() {
         </div>
       </div>
       <PriceRange />
-      <DestinationFilter />
-      <DurationFilter />
+      <TypeFilter />
+      <UniversityFilter />
+      <SeasonFilter />
+      <MonthFilter />
     </aside>
   )
 }

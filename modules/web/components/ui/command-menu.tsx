@@ -1,13 +1,14 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useQuery } from "@tanstack/react-query"
+import { useDebounce } from "@uidotdev/usehooks"
 import { Circle, File } from "lucide-react"
+import { useTRPC } from "@/trpc/client"
 
 import { docsConfig } from "@/config/docs"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   CommandDialog,
@@ -17,6 +18,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
+import { Skeleton } from "@/components/ui/skeleton"
 
 function CommandMenu({
   ...props
@@ -29,6 +31,16 @@ function CommandMenu({
 }) {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
+  const [query, setQuery] = React.useState("")
+  const debouncedQuery = useDebounce(query, 500)
+
+  const trpc = useTRPC()
+  const { data: searchResults, isLoading } = useQuery(
+    trpc.tours.search.queryOptions(
+      { query: debouncedQuery },
+      { enabled: debouncedQuery.length > 0 }
+    )
+  )
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -43,22 +55,19 @@ function CommandMenu({
         }
 
         e.preventDefault()
-        setOpen((open) => {
-          return !open
-        })
+        setOpen((open) => !open)
       }
     }
 
     document.addEventListener("keydown", down)
-    return () => {
-      return document.removeEventListener("keydown", down)
-    }
+    return () => document.removeEventListener("keydown", down)
   }, [])
 
   const runCommand = React.useCallback((command: () => unknown) => {
     setOpen(false)
     command()
   }, [])
+
   return (
     <React.Fragment>
       <Button
@@ -66,9 +75,7 @@ function CommandMenu({
         className={cn(
           "bg-muted/50 text-muted-foreground relative h-8 w-full justify-start rounded-lg text-sm font-normal shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64"
         )}
-        onClick={() => {
-          return setOpen(true)
-        }}
+        onClick={() => setOpen(true)}
         {...props}
       >
         <span className="hidden lg:inline-flex">ค้นหาสิ่งที่คุณต้องการ...</span>
@@ -81,132 +88,78 @@ function CommandMenu({
         open={open}
         onOpenChange={setOpen}
       >
-        <CommandInput placeholder="พิมพ์คำสั่งหรือค้นหา..." />
+        <CommandInput
+          placeholder="พิมพ์คำสั่งหรือค้นหา..."
+          value={query}
+          onValueChange={setQuery}
+        />
         <CommandList>
           <CommandEmpty>ไม่พบผลลัพธ์</CommandEmpty>
-          <CommandGroup heading="Links">
-            {docsConfig.mainNav
-              .filter((navitem) => {
-                return !navitem.external
-              })
-              .map((navItem) => {
-                return (
+          {isLoading && (
+            <div className="p-4">
+              <Skeleton className="h-12 w-full" />
+            </div>
+          )}
+          {!debouncedQuery && (
+            <CommandGroup heading="Links">
+              {docsConfig.mainNav
+                .filter((navitem) => !navitem.external)
+                .map((navItem) => (
                   <CommandItem
                     key={navItem.href}
                     value={navItem.title}
-                    onSelect={() => {
-                      runCommand(() => {
-                        return router.push(navItem.href as string)
-                      })
-                    }}
+                    onSelect={() =>
+                      runCommand(() => router.push(navItem.href as string))
+                    }
                   >
                     <File />
                     {navItem.title}
                   </CommandItem>
-                )
-              })}
-          </CommandGroup>
-          {docsConfig.tourNav.map((group) => {
-            return (
-              <CommandGroup
-                key={group.title}
-                heading={group.title}
-              >
-                {group.items.map((navItem) => {
-                  return (
-                    <CommandItem
-                      key={navItem.href}
-                      value={navItem.title}
-                      onSelect={() => {
-                        runCommand(() => {
-                          return router.push(navItem.href as string)
-                        })
-                      }}
-                    >
-                      <div className="mr-2 flex size-4 items-center justify-center">
-                        <Circle className="size-3" />
-                      </div>
-                      {navItem.title}
-                    </CommandItem>
-                  )
-                })}
+                ))}
+            </CommandGroup>
+          )}
+          {searchResults?.tourStudies &&
+            searchResults.tourStudies.length > 0 && (
+              <CommandGroup heading="Tour Studies">
+                {searchResults.tourStudies.map((navItem) => (
+                  <CommandItem
+                    key={navItem.id}
+                    value={navItem.name}
+                    onSelect={() =>
+                      runCommand(() =>
+                        router.push(`/tours/studies/${navItem.code}`)
+                      )
+                    }
+                  >
+                    <div className="mr-2 flex size-4 items-center justify-center">
+                      <Circle className="size-3" />
+                    </div>
+                    {navItem.name}
+                  </CommandItem>
+                ))}
               </CommandGroup>
-            )
-          })}
-          {docsConfig.tourStudy.map((group) => {
-            return (
-              <CommandGroup
-                key={group.title}
-                heading={group.title}
-              >
-                {group.items.map((navItem) => {
-                  return (
-                    <CommandItem
-                      key={navItem.href}
-                      onSelect={() => {
-                        runCommand(() => {
-                          return router.push(navItem.href as string)
-                        })
-                      }}
-                    >
-                      <div className="flex h-full w-full">
-                        <Image
-                          src={navItem.image || "/placeholder.svg"}
-                          alt={navItem.title}
-                          height={128}
-                          width={128}
-                          className="mr-2 h-32 w-32 rounded-md object-cover"
-                        />
-                        <div className="flex h-full w-full flex-1 flex-col gap-y-4">
-                          <span className="block text-sm font-medium">
-                            {navItem.title}
-                          </span>
-                          <div className="flex flex-1 flex-row flex-wrap gap-x-2 gap-y-2">
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {navItem.location}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {navItem.university}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {navItem.season}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {navItem.locationTH}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {navItem.universityTH}
-                            </Badge>
-                            <Badge
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {navItem.seasonTH}
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-                    </CommandItem>
-                  )
-                })}
+            )}
+          {searchResults?.tourTravels &&
+            searchResults.tourTravels.length > 0 && (
+              <CommandGroup heading="Tour Travels">
+                {searchResults.tourTravels.map((navItem) => (
+                  <CommandItem
+                    key={navItem.id}
+                    value={navItem.name}
+                    onSelect={() =>
+                      runCommand(() =>
+                        router.push(`/tours/travels/${navItem.code}`)
+                      )
+                    }
+                  >
+                    <div className="mr-2 flex size-4 items-center justify-center">
+                      <Circle className="size-3" />
+                    </div>
+                    {navItem.name}
+                  </CommandItem>
+                ))}
               </CommandGroup>
-            )
-          })}
+            )}
         </CommandList>
       </CommandDialog>
     </React.Fragment>

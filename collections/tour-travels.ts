@@ -107,5 +107,25 @@ export const TourTravels: CollectionConfig = {
         },
       ],
     },
+    {
+      name: "gallery",
+      type: "array",
+      label: "รวมภาพมหาลัย",
+      admin: {
+        initCollapsed: true,
+      },
+      fields: [
+        {
+          name: "image",
+          type: "upload",
+          relationTo: "media",
+        },
+        {
+          name: "caption",
+          type: "text",
+          label: "คำบรรยายภาพ",
+        },
+      ],
+    },
   ],
 }

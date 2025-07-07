@@ -15,6 +15,7 @@ export default function Home() {
     trpc.tourStudies.listReccommended.queryOptions()
   )
   void queryClient.prefetchQuery(trpc.blog.featured.queryOptions({ limit: 3 }))
+  void queryClient.prefetchQuery(trpc.galleries.list.queryOptions({ limit: 9 }))
 
   return (
     <>
@@ -30,10 +31,13 @@ export default function Home() {
           <React.Suspense fallback={<div>Loading...</div>}>
             <FeaturedBlogs />
           </React.Suspense>
-        </HydrationBoundary>
 
-        <Testimonials />
-        <GalleryShowcase />
+          <Testimonials />
+
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <GalleryShowcase />
+          </React.Suspense>
+        </HydrationBoundary>
       </div>
     </>
   )
