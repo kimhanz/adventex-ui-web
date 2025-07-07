@@ -33,6 +33,10 @@ export const tourTravelRouter = createTRPCRouter({
         ...results.docs[0],
         image: results.docs[0].image as Media,
         brochure: results.docs[0].brochure as Media,
+        gallery: results.docs[0].gallery?.map((item) => ({
+          ...item,
+          image: item.image as Media,
+        })),
       }
     }),
 

@@ -28,13 +28,13 @@ function TourCardImage({
       >
         <Image
           src={url}
-          width={400}
-          height={200}
+          width={355}
+          height={355}
           alt={alt}
           className="h-auto w-full object-contain"
         />
       </Link>
-      <div className="absolute right-2 top-2">
+      <div className="absolute top-2 right-2">
         <FavoriteButton
           id={id}
           type="travel"

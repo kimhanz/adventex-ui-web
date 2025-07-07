@@ -14,21 +14,6 @@ import { TourImageGallery } from "@/modules/tour/travels/components/tour-image-g
 import { ToursRecommended } from "@/modules/tour/travels/components/tour-recommended"
 import { TourTabs } from "@/modules/tour/travels/components/tour-tabs"
 
-const tourImages = [
-  { url: "/placeholder.svg", alt: "Senado Square in Macau" },
-  { url: "/placeholder.svg", alt: "Ruins of St. Paul's" },
-  { url: "/placeholder.svg", alt: "Venetian Macau" },
-  { url: "/placeholder.svg", alt: "A-Ma Temple" },
-  { url: "/placeholder.svg", alt: "Fisherman's Wharf" },
-  { url: "/placeholder.svg", alt: "Macau Tower" },
-  { url: "/placeholder.svg", alt: "Grand Lisboa" },
-  { url: "/placeholder.svg", alt: "Taipa Village" },
-  { url: "/placeholder.svg", alt: "Cotai Strip" },
-  { url: "/placeholder.svg", alt: "Hac Sa Beach" },
-  { url: "/placeholder.svg", alt: "Macau Museum" },
-  { url: "/placeholder.svg", alt: "Guia Fortress" },
-]
-
 export default async function TourCode(props: {
   params: Promise<{ tourCode: string }>
 }) {
@@ -44,6 +29,15 @@ export default async function TourCode(props: {
     trpc.tourTravels.listReccommended.queryOptions()
   )
 
+  const images: { url: string; alt: string }[] = []
+  tour.gallery?.forEach((gal) => {
+    const image: { url: string; alt: string } = {
+      url: gal.image.url || "/placeholder.svg",
+      alt: gal.image.alt || "",
+    }
+    images.push(image)
+  })
+
   return (
     <div className="space-y-6">
       <TourBreadcrumb name={tour.name} />
@@ -57,9 +51,9 @@ export default async function TourCode(props: {
         images={[
           {
             url: tour.image.url || "/placeholder.svg",
-            alt: tour.image.alt || "N/A",
+            alt: tour.image.alt || "",
           },
-          ...tourImages,
+          ...images,
         ]}
       />
 
