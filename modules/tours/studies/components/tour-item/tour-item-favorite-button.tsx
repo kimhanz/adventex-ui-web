@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Heart } from "lucide-react"
 
@@ -17,7 +19,7 @@ function TourItemFavoriteButton() {
       <Heart
         className={cn(
           "h-5 w-5",
-          isFavorite ? "fill-red-500 text-[#DC2626]" : "text-muted-foreground"
+          isFavorite ? "fill-[#DC2626] text-[#DC2626]" : "text-muted-foreground"
         )}
       />
     </Button>

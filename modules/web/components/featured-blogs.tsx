@@ -24,8 +24,8 @@ function FeaturedBlogs() {
   }
 
   return (
-    <section className="bg-gray-50 py-16">
-      <div className="container mx-auto px-4">
+    <section className="container-wrapper">
+      <div className="container py-4 xl:py-6 2xl:py-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
             บทความล่าสุด

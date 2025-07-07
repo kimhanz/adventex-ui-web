@@ -20,8 +20,8 @@ function TourItemImage({
       <Image
         src={url}
         alt={alt}
-        width={300}
-        height={200}
+        width={266}
+        height={266}
         className="h-auto w-full rounded-md object-contain"
       />
     </Link>
