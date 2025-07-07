@@ -1,5 +1,6 @@
+import { FavoriteButton } from "@/modules/favorites/components/favorite-button"
+
 import { TourStudies } from "../../types"
-import { TourItemFavoriteButton } from "./tour-item-favorite-button"
 import { TourItemFooter } from "./tour-item-footer"
 import { TourItemHighlights } from "./tour-item-highlights"
 import { TourItemImage } from "./tour-item-image"
@@ -16,11 +17,16 @@ function TourItem({ tour }: { tour: TourStudies }) {
       <div className="p-4">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative w-full md:w-1/3">
-            <TourItemFavoriteButton />
+            <FavoriteButton
+              id={tour.id}
+              type="study"
+              name={tour.name}
+              image={tour.image?.url || "/placeholder.svg"}
+            />
             <TourItemImage
               name={tour.name}
               code={tour.code}
-              url={tour.image?.url || "/images/placeholder.png"}
+              url={tour.image?.url || "/placeholder.svg"}
               alt={tour.image?.alt || "Tour Image"}
             />
           </div>

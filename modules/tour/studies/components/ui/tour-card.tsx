@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { FavoriteButton } from "@/modules/favorites/components/favorite-button"
 
 import { TourStudiesRecommended } from "../../types"
 
@@ -10,26 +11,36 @@ function TourCardImage({
   code,
   url,
   alt,
+  id,
 }: {
   name: string
   code: string
   url: string
   alt: string
+  id: string
 }) {
   return (
-    <div>
+    <div className="relative">
       <Link
         title={name}
         href={`/tours/studies/${code}`}
       >
         <Image
           src={url}
-          width={400}
-          height={200}
+          width={355}
+          height={355}
           alt={alt}
           className="h-auto w-full object-contain"
         />
       </Link>
+      <div className="absolute right-2 top-2">
+        <FavoriteButton
+          id={id}
+          type="study"
+          name={name}
+          image={url}
+        />
+      </div>
     </div>
   )
 }
@@ -210,6 +221,7 @@ function TourCard({ tour }: { tour: TourStudiesRecommended }) {
   return (
     <div className="group flex flex-col justify-between overflow-hidden rounded-lg border">
       <TourCardImage
+        id={tour.id}
         name={tour.name}
         code={tour.code}
         url={tour.image.url || "/placeholder.svg"}

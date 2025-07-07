@@ -2,78 +2,35 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useSuspenseQuery } from "@tanstack/react-query"
 import { motion } from "motion/react"
+import { useTRPC } from "@/trpc/client"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-const images = [
-  {
-    alt: "Gallery image 1",
-    height: 800,
-    span: "md:col-span-1 md:row-span-2",
-    src: "/images/gallery/GALLERY_1.png",
-    width: 600,
-  },
-  {
-    alt: "Gallery image 2",
-    height: 400,
-    span: "md:col-span-1 md:row-span-1",
-    src: "/images/gallery/GALLERY_2.png",
-    width: 600,
-  },
-  {
-    alt: "Gallery image 3",
-    height: 400,
-    span: "md:col-span-2 md:row-span-1",
-    src: "/images/gallery/GALLERY_3.png",
-    width: 600,
-  },
-  {
-    alt: "Gallery image 4",
-    height: 800,
-    span: "md:col-span-2 md:row-span-2",
-    src: "/images/gallery/GALLERY_4.png",
-    width: 800,
-  },
-  {
-    alt: "Gallery image 5",
-    height: 400,
-    span: "md:col-span-1 md:row-span-2",
-    src: "/images/gallery/GALLERY_5.png",
-    width: 600,
-  },
-  {
-    alt: "Gallery image 6",
-    height: 400,
-    span: "md:col-span-1 md:row-span-1",
-    src: "/images/gallery/GALLERY_6.png",
-    width: 600,
-  },
-  {
-    alt: "Gallery image 7",
-    height: 400,
-    span: "md:col-span-2 md:row-span-1",
-    src: "/images/gallery/GALLERY_7.png",
-    width: 1200,
-  },
-  {
-    alt: "Gallery image 8",
-    height: 400,
-    span: "md:col-span-1 md:row-span-1",
-    src: "/images/gallery/GALLERY_8.png",
-    width: 600,
-  },
-  {
-    alt: "Gallery image 9",
-    height: 400,
-    span: "md:col-span-1 md:row-span-1",
-    src: "/images/gallery/GALLERY_9.png",
-    width: 600,
-  },
+const spans = [
+  "md:col-span-1 md:row-span-2",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-2 md:row-span-1",
+  "md:col-span-2 md:row-span-2",
+  "md:col-span-1 md:row-span-2",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-2 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
 ]
 
-export function GalleryShowcase() {
+function GalleryShowcase() {
+  const trpc = useTRPC()
+  const { data } = useSuspenseQuery(
+    trpc.galleries.list.queryOptions({ limit: 9 })
+  )
+
+  if (data.docs.length === 0) {
+    return null
+  }
+
   return (
     <section className="container-wrapper">
       <div className="container py-4 xl:py-6 2xl:py-4">
@@ -91,21 +48,21 @@ export function GalleryShowcase() {
           </div>
 
           <div className="grid auto-rows-[200px] grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-4">
-            {images.map((image, index) => {
+            {data.docs.map((doc, index) => {
               return (
                 <motion.div
                   key={index}
                   className={cn(
                     "group relative cursor-pointer overflow-hidden rounded-xl",
-                    image.span
+                    spans[index]
                   )}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
                   <Image
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
+                    src={doc.image.url || "/placeholder.svg"}
+                    alt={doc.image.alt || ""}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -128,3 +85,5 @@ export function GalleryShowcase() {
     </section>
   )
 }
+
+export { GalleryShowcase }

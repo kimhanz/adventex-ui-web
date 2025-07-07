@@ -16,6 +16,7 @@ export const galleriesRouter = createTRPCRouter({
         depth: 1,
         page: input.cursor,
         limit: input.limit,
+        sort: "-createdAt",
       })
 
       return {

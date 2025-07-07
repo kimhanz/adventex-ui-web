@@ -6,14 +6,15 @@ import { TRPCReactProvider } from "@/trpc/client"
 import { Toaster } from "@/components/ui/sonner"
 import { PostHogProvider as PHProvider } from "@/components/posthog"
 import { SuspendedPostHogPageView as PostHogPageView } from "@/components/posthog-page-view"
+import { FavoritesProvider } from "@/modules/favorites/hooks/favorites-context"
 
-export function Providers({ children }: { children: React.ReactNode }) {
+function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PHProvider>
       <PostHogPageView />
       <NuqsAdapter>
         <TRPCReactProvider>
-          {children}
+          <FavoritesProvider>{children}</FavoritesProvider>
           <Toaster
             richColors
             position="top-center"
@@ -23,3 +24,5 @@ export function Providers({ children }: { children: React.ReactNode }) {
     </PHProvider>
   )
 }
+
+export { Providers }
