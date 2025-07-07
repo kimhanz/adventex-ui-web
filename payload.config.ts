@@ -9,12 +9,12 @@ import { buildConfig } from "payload"
 import sharp from "sharp"
 
 import { BlogPosts } from "./collections/blog-posts"
-import { Documents } from "./collections/documents"
-import { Galleries } from "./collections/galleries"
-import { Media } from "./collections/media"
+import { Documents } from "./collections/Documents"
+import { Galleries } from "./collections/Galleries"
+import { Media } from "./collections/Media"
 import { TourStudies } from "./collections/tour-studies"
 import { TourTravels } from "./collections/tour-travels"
-import { Users } from "./collections/users"
+import { Users } from "./collections/Users"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
